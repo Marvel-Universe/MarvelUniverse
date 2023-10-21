@@ -2,50 +2,44 @@ from django.db import models
 
 
 class Character(models.Model):
-    def __init__(self):
-        self.state = models.CharField(max_length=4, null=False)
-        self.name = models.CharField(max_length=200)
-        self.description = models.CharField(max_length=1000)
-        self.image = models.URLField()
+    name = models.CharField(max_length=200, null=True)
+    description = models.CharField(max_length=1000, null=True)
+    image = models.URLField(null=True)
 
     def __str__(self) -> str:
         return self.name
 
 
 class Comic(models.Model):
-    def __init__(self):
-        self.title = models.CharField(max_length=200)
-        self.description = models.CharField(max_length=500)
-        self.image = models.URLField()
+    title = models.CharField(max_length=200, null=True)
+    description = models.CharField(max_length=500, null=True)
+    image = models.URLField(null=True)
 
     def __str__(self) -> str:
-        return self.name
+        return self.title
 
 
 class Series(models.Model):
-    def __init__(self):
-        self.title = models.CharField(max_length=200)
-        self.description = models.CharField(max_length=500)
-        self.image = models.URLField()
+    title = models.CharField(max_length=200, null=True)
+    description = models.CharField(max_length=500, null=True)
+    image = models.URLField(null=True)
 
     def __str__(self) -> str:
-        return self.name 
+        return self.title
 
 
 class CharacterInComic(models.Model):
-    def __init__(self):
-        self.character = models.ForeignKey(Character, on_delete=models.CASCADE)
-        self.comic = models.ForeignKey(Comic, on_delete=models.CASCADE)
+    character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
+    comic = models.ForeignKey(Comic, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
-        return self.character.name + " in " + self.comic.name
+        return self.character.name + " in " + self.comic.title
 
 
 class CharacterInSeries(models.Model):
-    def __init__(self):
-        self.character = models.ForeignKey(Character, on_delete=models.CASCADE)
-        self.series = models.ForeignKey(Series, on_delete=models.CASCADE)
+    character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
+    series = models.ForeignKey(Series, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
-        return self.character.name + " in " + self.series.name
+        return self.character.name + " in " + self.series.title
 
