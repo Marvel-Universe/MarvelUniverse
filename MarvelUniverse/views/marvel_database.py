@@ -53,8 +53,3 @@ def create_series():
             else:
                 series_object = Series.objects.get(title=series['title'])
                 CharacterInSeries.objects.create(character=character, series=series_object)
-
-
-create_characters()
-create_comics()
-create_series()
