@@ -125,8 +125,42 @@
         fill: white;
       }
 
+      /* Dropdown styles */
+      .dropdown {
+        position: relative;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 145px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        right: 0;
+        top: 27px;
+      }
+
+      .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #EC1D24;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+
     </style>
 </head>
+
 <body>
     <nav>
       <div class="logo"><img src="img/logo.png"></div>
@@ -155,11 +189,19 @@
           </li>
           <li class="menu-text"><a href="#">Log in</a></li>
           <li class="menu-text"><a href="#">Sign up</a></li>
-          <li class="icon">
-            <a href="" class="flex-center">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-            </a>
-          </li>
+          <div class="dropdown" >
+            <li class="icon">
+                <a class="flex-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">About</a>
+                    <a href="#">Review</a>
+                    <a href="#">Quiz</a>
+                    <a href="#">Log out</a>
+                </div>
+            </li>
+          </div>
         </ul>
       </div>
     </nav>
