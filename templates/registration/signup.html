@@ -1,13 +1,173 @@
-<h2>Register</h2>
-<form method="POST">
-    {% csrf_token %}
-    <table style="padding: 2ex;">
-    {{ form.as_table }}     {# this line shows the sign-up form #}
-    <tr>
-    <td colspan="2">
-    <button type="submit">Register</button>
+{% load static %}
+<html>
+    <head>
+        <title>MarvelUniverse - Sign up</title>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Roboto+Condensed&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                background-color: black;
+                font-family: 'Roboto Condensed', sans-serif;
+            }
+            
+            .flex {
+                display: flex;
+            }
 
-    </td>
-    </tr>
-    </table>
-</form>
+            .center {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .white-text {
+                color: white;
+            }
+
+            .red-text {
+                color: #EC1D24;
+            }
+
+            .margin0 {
+                margin: 0;
+            }
+
+            .main {
+                position: relative;
+                top: 55px;
+                width: 100%;
+                padding-top: 5%;
+                align-items: center;
+            }
+
+            nav {
+                position: fixed;
+                width: 100%;
+                height: 55px;
+                display: flex;
+                justify-content: space-between;
+                background-color: black;
+                padding: 0 10px;
+            }
+
+            .logo {
+                align-items: center;
+            }
+
+            .logo img {
+                width: 160px;
+                height: auto;
+                padding-top: 9px;
+            }
+
+            .spiderman {
+                padding-left: 50px;
+            }
+
+            .spiderman img {
+                width: 350px;
+                height: auto;
+            }
+
+            .head {
+                font-size: 30px;
+                font-weight: 900;
+                margin: 0;
+                margin-bottom: 20px;
+            }
+
+            .input-field input {
+                position: relative;
+                background-color: white;
+                width: 100%;
+                height: 40px;
+                padding-left: 20px;
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 15px;
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+
+            svg {
+                position: absolute;
+            }
+
+            button {
+                background-color: #EC1D24;
+                width: 100%;
+                height: 40px;
+                color: white;
+                font-size: 15px;
+                font-family: 'Roboto Condensed', sans-serif;
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+
+            .text-box {
+                text-align: center;
+            }
+
+            .remember-pw-text {
+                padding-left: 5px; 
+                margin: 0;
+            }
+
+            .login ul {
+                padding-left: 10px;
+            }
+
+            .login-link li {
+                list-style-type: none;
+                padding-inline-start: 0;
+            }
+
+            .login-link a {
+                color: #EC1D24;
+                text-decoration: 0;
+            }
+
+            .login-link a:hover {
+                color: white;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 5fr 5fr 1fr;
+            }
+
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="logo"><img src="{% static 'logo.png' %}"></div>
+        </nav>
+        <div class="main flex center">
+            <div class="signup-box">
+                <p class="head red-text">SIGN UP</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="input-field flex">
+                        <div class="firstname">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>
+                            <div>{{form.firstname}}</div>
+                        </div>
+                        <div style="margin-left: 10px;">{{form.lastname}}</div>
+                    </div>
+                    <div class="input-field">{{form.email}}</div>
+                    <div class="input-field">{{form.username}}</div>
+                    <div class="input-field flex">
+                        <div>{{form.password1}}</div>
+                        <div style="margin-left: 10px;">{{form.password2}}</div>
+                    </div>
+                    <div class="error">{{form.errors}}</div>
+                    <button type="submit">Sign up</button>
+                    <div class="login flex center margin0">
+                        <p class="white-text margin0">Already Have Account?</p>
+                        <ul class="login-link margin0"><li><a href="{% url 'login' %}">Log in</a></li></ul>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="spiderman"><img src="{% static 'spiderman.png' %}"></div>
+        </div>
+    </body>
+</html>
