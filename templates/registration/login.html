@@ -149,35 +149,36 @@
             <div class="logo"><img src="{% static 'logo.png' %}"></div>
         </nav>
         <div class="main flex center">
-        <div class="ironman">
-            <img src="{% static 'ironman.png' %}">
-        </div>
-        <div class="login flex center">
-            <div class="login-box">
-                <div>
-                    <p class="welcome-text red-text margin0">WELCOME BACK !</p>
-                    <p class="fans-text white-text">TRUE BELIEVERS</p>
-                </div>
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="username">
-                        <input type="text" name="username" placeholder="username" required>
+            <div class="ironman">
+                <img src="{% static 'ironman.png' %}">
+            </div>
+            <div class="login flex center">
+                <div class="login-box">
+                    <div>
+                        <p class="welcome-text red-text margin0">WELCOME BACK !</p>
+                        <p class="fans-text white-text">TRUE BELIEVERS</p>
                     </div>
-                    <div class="password">
-                        <input type="text" name="password" placeholder="password" required>
-                    </div>
-                    <div class="about-pw flex">
-                        <div class="flex">
-                            <input class="check-box" type="checkbox" name="Remember password">
-                            <p class="white-text" style="padding-left: 5px; margin-top: 15px;">Remember Password</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="username">
+                            <input type="text" name="username" placeholder="username" required>
                         </div>
-                        <ul class="forget-pw-link"><li><a href="#">Forget password</a></li></ul>
+                        <div class="password">
+                            <input type="text" name="password" placeholder="password" required>
+                        </div>
+                        <div class="about-pw flex">
+                            <div class="flex">
+                                <input class="check-box" type="checkbox" name="Remember password">
+                                <p class="white-text" style="padding-left: 5px; margin-top: 15px;">Remember Password</p>
+                            </div>
+                            <ul class="forget-pw-link"><li><a href="#">Forget password</a></li></ul>
+                        </div>
+                        <button type="submit" class="white-text">Login</button>
+                    </form>
+                    <div class="signup flex center margin0">
+                        <p class="white-text margin0">Don’t Have an Account?</p>
+                        <ul class="sign-up-link margin0"><li><a href="{% url 'signup' %}">Sign up</a></li></ul>
                     </div>
-                    <button type="submit" class="white-text">Login</button>
-                </form>
-                <div class="signup flex center margin0">
-                    <p class="white-text margin0">Don’t Have an Account?</p>
-                    <ul class="sign-up-link margin0"><li><a href="{% url 'signup' %}">Sign up</a></li></ul>
                 </div>
             </div>
         </div>
