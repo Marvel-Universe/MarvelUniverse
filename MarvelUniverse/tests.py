@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.test import Client
+from django.test import override_settings
 
 
 class AuthenticationViewTest(TestCase):
@@ -15,11 +16,10 @@ class AuthenticationViewTest(TestCase):
 
         # Test when a user enters valid login credentials
         response = client.post(reverse('login'), {'username': self.username, 'password': self.password})
-        self.assertEqual(response.status_code, 302)  # Expect a redirect after successful login
+        self.assertEqual(response.status_code, 302)
 
-        # Test when a user enters invalid login credentials
         response = client.post(reverse('login'), {'username': self.username, 'password': 'incorrect'})
-        self.assertEqual(response.status_code, 200)  # Expect a re-render of the login page
+        self.assertEqual(response.status_code, 200)
 
     def test_login_view_template(self):
         client = Client()
@@ -28,12 +28,21 @@ class AuthenticationViewTest(TestCase):
         self.assertTemplateUsed(response, 'registration/login.html')
 
 
+@override_settings(AUTH_PASSWORD_VALIDATORS=[])
 class UserRegistrationTest(TestCase):
     def test_user_registration(self):
-        response = self.client.post(reverse('signup'),
-                                    {'username': 'testuser', 'password1': 'testpassword', 'password2': 'testpassword'})
-        self.assertEqual(response.status_code, 302)  # Expect a redirect after successful registration
-        self.assertTrue(User.objects.filter(username='testuser').exists())
+        response = self.client.post(reverse('signup'), {
+            'username': 'testuser',
+            'password1': 'testpassword',
+            'password2': 'testpassword',
+            'email': 'testuser@example.com',
+            'firstname': 'John',
+            'lastname': 'Doe',
+        })
+        self.assertEqual(response.status_code, 302)
+
+        user_created = User.objects.filter(username='testuser').exists()
+        self.assertTrue(user_created)
 
 
 class UserLogoutTest(TestCase):
