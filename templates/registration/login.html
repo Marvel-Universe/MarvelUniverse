@@ -37,6 +37,8 @@
                 top: 55px;
                 width: 100%;
                 padding-top: 6%;
+                display: grid;
+                grid-template-columns: 1fr 1fr 414.3px 1fr;
             }
 
             nav {
@@ -57,10 +59,6 @@
                 width: 160px;
                 height: auto;
                 padding-top: 9px;
-            }
-
-            .ironman {
-                padding-right: 30px;
             }
 
             .ironman img {
@@ -155,7 +153,8 @@
         <nav>
             <div class="logo"><img src="{% static 'logo.png' %}"></div>
         </nav>
-        <div class="main flex center">
+        <div class="main center">
+            <div class="empty"></div>
             <div class="ironman">
                 <img src="{% static 'ironman.png' %}">
             </div>
@@ -188,6 +187,7 @@
                     </div>
                 </div>
             </div>
+            <div class="empty"></div>
         </div>
     </body>
 </html>
