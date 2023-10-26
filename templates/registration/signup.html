@@ -31,14 +31,6 @@
                 margin: 0;
             }
 
-            .main {
-                position: relative;
-                top: 55px;
-                width: 100%;
-                padding-top: 5%;
-                align-items: center;
-            }
-
             nav {
                 position: fixed;
                 width: 100%;
@@ -68,6 +60,17 @@
                 height: auto;
             }
 
+            .main {
+                position: absolute;
+                width: 100%;
+                align-items: center;
+                top: 2%;
+                bottom: 0;
+                margin: auto 0;
+                display: grid;
+                grid-template-columns: 1fr 414.3px 1fr 1fr;
+            }
+
             .head {
                 font-size: 30px;
                 font-weight: 900;
@@ -76,7 +79,6 @@
             }
 
             .input-field input {
-                position: relative;
                 background-color: white;
                 width: 100%;
                 height: 40px;
@@ -85,10 +87,6 @@
                 font-size: 15px;
                 margin-bottom: 15px;
                 border-radius: 10px;
-            }
-
-            svg {
-                position: absolute;
             }
 
             button {
@@ -131,34 +129,48 @@
 
             .grid {
                 display: grid;
-                grid-template-columns: 1fr 5fr 5fr 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
+            .error p {
+                color: white;
+                list-style-type: none;
+                white-space: pre;
+                padding: 0;
+                margin: 0;
+                margin-bottom: 15px;
+            }
         </style>
     </head>
     <body>
         <nav>
             <div class="logo"><img src="{% static 'logo.png' %}"></div>
         </nav>
-        <div class="main flex center">
-            <div class="signup-box">
+        <div class="main center">
+            <div class="empty"></div>
+            <div class="signup-box-padding-0">
                 <p class="head red-text">SIGN UP</p>
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="input-field flex">
-                        <div class="firstname">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>
-                            <div>{{form.firstname}}</div>
-                        </div>
+                    <div class="input-field grid">
+                        <div>{{form.firstname}}</div>
                         <div style="margin-left: 10px;">{{form.lastname}}</div>
                     </div>
                     <div class="input-field">{{form.email}}</div>
                     <div class="input-field">{{form.username}}</div>
-                    <div class="input-field flex">
+                    <div class="input-field grid">
                         <div>{{form.password1}}</div>
                         <div style="margin-left: 10px;">{{form.password2}}</div>
                     </div>
-                    <div class="error">{{form.errors}}</div>
+                    <div class="error">
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <p> {{ error }} </p>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                     <button type="submit">Sign up</button>
                     <div class="login flex center margin0">
                         <p class="white-text margin0">Already Have Account?</p>
@@ -166,8 +178,8 @@
                     </div>
                 </form>
             </div>
-            
             <div class="spiderman"><img src="{% static 'spiderman.png' %}"></div>
+            <div class="empty"></div>
         </div>
     </body>
 </html>
