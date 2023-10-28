@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+
 
 def homepage(requests):
-    return HttpResponse('welcome to marvel')
+    return render(requests, 'homepage.html')

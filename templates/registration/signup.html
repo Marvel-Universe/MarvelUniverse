@@ -1,0 +1,185 @@
+{% load static %}
+<html>
+    <head>
+        <title>MarvelUniverse - Sign up</title>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Roboto+Condensed&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                background-color: black;
+                font-family: 'Roboto Condensed', sans-serif;
+            }
+            
+            .flex {
+                display: flex;
+            }
+
+            .center {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .white-text {
+                color: white;
+            }
+
+            .red-text {
+                color: #EC1D24;
+            }
+
+            .margin0 {
+                margin: 0;
+            }
+
+            nav {
+                position: fixed;
+                width: 100%;
+                height: 55px;
+                display: flex;
+                justify-content: space-between;
+                background-color: black;
+                padding: 0 10px;
+            }
+
+            .logo {
+                align-items: center;
+            }
+
+            .logo img {
+                width: 160px;
+                height: auto;
+                padding-top: 9px;
+            }
+
+            .spiderman {
+                padding-left: 50px;
+            }
+
+            .spiderman img {
+                width: 350px;
+                height: auto;
+            }
+
+            .main {
+                position: absolute;
+                width: 100%;
+                align-items: center;
+                top: 55px;
+                bottom: 0;
+                margin: auto 0;
+                display: grid;
+                grid-template-columns: 1fr 414.3px 1fr 1fr;
+            }
+
+            .head {
+                font-size: 30px;
+                font-weight: 900;
+                margin: 0;
+                margin-bottom: 20px;
+            }
+
+            .input-field input {
+                background-color: white;
+                width: 100%;
+                height: 40px;
+                padding-left: 20px;
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 15px;
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+
+            button {
+                background-color: #EC1D24;
+                width: 100%;
+                height: 40px;
+                color: white;
+                font-size: 15px;
+                font-family: 'Roboto Condensed', sans-serif;
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+
+            .text-box {
+                text-align: center;
+            }
+
+            .remember-pw-text {
+                padding-left: 5px; 
+                margin: 0;
+            }
+
+            .login ul {
+                padding-left: 10px;
+            }
+
+            .login-link li {
+                list-style-type: none;
+                padding-inline-start: 0;
+            }
+
+            .login-link a {
+                color: #EC1D24;
+                text-decoration: 0;
+            }
+
+            .login-link a:hover {
+                color: white;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .error p {
+                color: white;
+                list-style-type: none;
+                white-space: pre;
+                padding: 0;
+                margin: 0;
+                margin-bottom: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="logo"><img src="{% static 'logo.png' %}"></div>
+        </nav>
+        <div class="main center">
+            <div class="empty"></div>
+            <div class="signup-box-padding-0">
+                <p class="head red-text">SIGN UP</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="input-field grid">
+                        <div>{{form.firstname}}</div>
+                        <div style="margin-left: 10px;">{{form.lastname}}</div>
+                    </div>
+                    <div class="input-field">{{form.email}}</div>
+                    <div class="input-field">{{form.username}}</div>
+                    <div class="input-field grid">
+                        <div>{{form.password1}}</div>
+                        <div style="margin-left: 10px;">{{form.password2}}</div>
+                    </div>
+                    <div class="error">
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <p> {{ error }} </p>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <button type="submit">Sign up</button>
+                    <div class="login flex center margin0">
+                        <p class="white-text margin0">Already Have Account?</p>
+                        <ul class="login-link margin0"><li><a href="{% url 'login' %}">Log in</a></li></ul>
+                    </div>
+                </form>
+            </div>
+            <div class="spiderman"><img src="{% static 'spiderman.png' %}"></div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
