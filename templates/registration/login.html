@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <html>
     <head>
         <title>MarvelUniverse - Log in</title>
@@ -187,6 +188,11 @@
                     <div class="signup flex center margin0">
                         <p class="white-text margin0">Don’t Have an Account?</p>
                         <ul class="sign-up-link margin0"><li><a href="{% url 'signup' %}">Sign up</a></li></ul>
+                    </div>
+                    <div class="google-login">
+                                <button onclick="document.location='{% provider_login_url 'google' %}'">
+                                    Login with Google
+                                </button>
                     </div>
                 </div>
             </div>
