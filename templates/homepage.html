@@ -1,5 +1,66 @@
 {% extends 'components/base.html' %}
 
-
 {% block content %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <!-- Other meta tags, title, and imports go here -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+        <style>
+            .white-text {
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" id="characters">
+                <h2 class="white-text">Characters</h2>
+                {% for character in characters %}
+                    <div class="item">
+                        <img src="{{ character.image }}" alt="{{ character.name }}">
+                        <p class="white-text">{{ character.name }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="swiper-slide" id="comics">
+                <h2 class="white-text">Comics</h2>
+                {% for comic in comics %}
+                    <div class="item">
+                        <img src="{{ comic.image }}" alt="{{ comic.title }}">
+                        <p class="white-text">{{ comic.title }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="swiper-slide" id="series">
+                <h2 class="white-text">Series</h2>
+                {% for serie in series %}
+                    <div class="item">
+                        <img src="{{ serie.image }}" alt="{{ serie.title }}">
+                        <p class="white-text">{{ serie.title }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 4,
+            spaceBetween: 10,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            }
+        });
+    </script>
+
+    </body>
+    </html>
 {% endblock %}
