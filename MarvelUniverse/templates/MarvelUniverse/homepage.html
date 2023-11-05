@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="slide-container">
-                        <div class="wrapper">
+                        <div class="wrapper" id="id1">
                             <i class="fa-solid fa-angle-left" id="left"></i>
                             <ul class="carousel">
                                 {% for character in characters %}
@@ -65,7 +65,8 @@
                                         <div class="img">
                                             <img src="{{ character.image }}">
                                         </div>
-                                    </li>                                                                   
+                                    </li>
+                                    <p class="character-name">{{ character.name }}</p>                                                                   
                                 {% endfor %}
                             </ul>
                             <i class="fa-solid fa-angle-right" id="right"></i>
