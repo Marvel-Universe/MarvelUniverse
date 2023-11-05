@@ -4,12 +4,12 @@ from ..models import Character, Comic, Series
 
 
 class HomePageView(View):
-    template_name = 'homepage.html'
+    template_name = 'MarvelUniverse/homepage.html'
 
     def get(self, request):
-        characters = Character.objects.all()[:16]
-        comics = Comic.objects.all()[:16]
-        series = Series.objects.all()[:16]
+        characters = Character.objects.all()
+        comics = Comic.objects.all()
+        series = Series.objects.all()
 
         context = {
             'characters': characters,
