@@ -1,0 +1,226 @@
+.white-text {
+    color: white;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+a {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+/* image slider */
+
+.img-slider {
+    width: 100%;
+    height: 464px;
+    margin: auto;
+    position: relative;
+    top: 55px;
+    overflow: hidden;
+}
+
+.list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: max-content;
+    transition: 1s;
+}
+
+.list img {
+    object-fit: cover;
+}
+
+.dots {
+    position: relative;
+    color: white;
+    width: 100%;
+    top: 58px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.dots li {
+    list-style-type: none;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 20px;
+    transition: 1s;
+}
+
+.dots li.active {
+    width: 30px;
+}
+
+/* layout setting */
+
+.main {
+    display: grid;
+    grid-template-columns: 2fr 10fr 2fr;
+    position: relative;
+    top: 60px;
+}
+
+.content {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+/* title */
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 0;
+    cursor: pointer;
+    align-items: end;
+}
+
+.see-all:hover {
+    color: #EC1D24;
+}
+
+.see-all svg:hover {
+    fill: #EC1D24;
+}
+
+.title p {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+    /* margin-top: 30px; */
+}
+
+.title a {
+    font-size: 18px;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.title svg {
+    fill: white;
+}
+
+.character-name {
+    color: white;
+    position: absolute;
+    top: 120px;
+    opacity: 0;
+}
+
+.card img:hover{
+    opacity: 65%;
+}
+
+.character-name:hover {
+    opacity: 1;
+}
+
+.see-all svg {
+    /* padding-top: 10px; */
+    width: 15px;
+    height: auto;
+}
+
+/* card */
+
+.card img {
+    position: relative;
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* card slider */
+
+.slide-container {
+    width: 100%;
+}
+
+.carousel {
+    list-style-type: none;
+    /* margin-block-start: 10px; */
+    margin-block-end: 20px;
+}
+
+.carousel.dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.wrapper .carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 3) -12px);
+    gap: 8px;
+    overflow: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width:0;
+}
+
+.wrapper .card {
+    scroll-snap-align: start;
+}
+
+.wrapper {
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+}
+
+.wrapper i {
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.wrapper i:hover {
+    color: #EC1D24;
+}
+
+.wrapper i:first-child {
+    left: -30px;
+    top: 120px;
+}
+
+.wrapper i:last-child {
+    right: -30px;
+    top: 120px;
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper .carousel {
+        grid-auto-columns: calc((100% / 3) -12px);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper .carousel {
+        grid-auto-columns: 100%;
+    }
+}
