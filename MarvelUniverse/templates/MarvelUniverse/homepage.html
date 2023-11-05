@@ -1,0 +1,48 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/homepage.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    </head>
+    <body>
+        <section class="img-slider">
+            <div class="list">
+                <div class="item">
+                    <img src="{% static 'MarvelUniverse/img/banner/welcome.png' %}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{% static 'MarvelUniverse/img/banner/char.png' %}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{% static 'MarvelUniverse/img/banner/comics1.png' %}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{% static 'MarvelUniverse/img/banner/comics2.png' %}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{% static 'MarvelUniverse/img/banner/series.png' %}" alt="">
+                </div>
+                <div class="item">
+                    <img src="{% static 'MarvelUniverse/img/banner/quiz.png' %}" alt="">
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="prev"></button>
+                <button id="next"></button>
+            </div>
+        </section>
+        <section class="dots">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </section>
+        <script src="{% static 'MarvelUniverse/js/img-slider.js' %}"></script>
+    </body>
+    </html>
+{% endblock %}
