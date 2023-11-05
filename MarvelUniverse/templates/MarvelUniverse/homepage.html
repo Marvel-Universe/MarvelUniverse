@@ -42,7 +42,91 @@
             <li></li>
             <li></li>
         </section>
+        <section class="main">
+            <div class="empty"></div>
+            <div class="content">
+                <!-- Characters section -->
+                <div>
+                    <div class="title white-text">
+                        <p>CHARACTERS</p>
+                        <div class="see-all white-text" href="#">
+                            <a href="#" class="see-all white-text">
+                                See All
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slide-container">
+                        <div class="wrapper">
+                            <i class="fa-solid fa-angle-left" id="left"></i>
+                            <ul class="carousel">
+                                {% for character in characters %}
+                                    <li class="card">
+                                        <div class="img">
+                                            <img src="{{ character.image }}">
+                                        </div>
+                                    </li>                                                                   
+                                {% endfor %}
+                            </ul>
+                            <i class="fa-solid fa-angle-right" id="right"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Comics section -->
+                <div>
+                    <div class="title white-text">
+                        <p>COMICS</p>
+                        <a class="see-all white-text" href="#">
+                            See All
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                        </a>
+                    </div>
+                    <div class="slide-container">
+                        <div class="wrapper" id="id2">
+                            <i class="fa-solid fa-angle-left" id="left"></i>
+                            <ul class="carousel">
+                                {% for comic in comics %}
+                                    <li class="card">
+                                        <div class="img">
+                                            <img src="{{ comic.image }}">
+                                        </div>
+                                    </li>                                                                   
+                                {% endfor %}
+                            </ul>
+                            <i class="fa-solid fa-angle-right" id="right"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Series section -->
+                <div>
+                    <div class="title white-text">
+                        <p>SERIES</p>
+                        <a class="see-all white-text" href="#">
+                            See All
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                        </a>
+                    </div>
+                    <div class="slide-container">
+                        <div class="wrapper" id="id3">
+                            <i class="fa-solid fa-angle-left" id="left"></i>
+                            <ul class="carousel">
+                                {% for serie in series %}
+                                    <li class="card">
+                                        <div class="img">
+                                            <img src="{{ serie.image }}">
+                                        </div>
+                                    </li>                                                                   
+                                {% endfor %}
+                            </ul>
+                            <i class="fa-solid fa-angle-right" id="right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="empty"></div>
+        </section>
         <script src="{% static 'MarvelUniverse/js/img-slider.js' %}"></script>
+        <script src="{% static 'MarvelUniverse/js/card-slider.js' %}"></script>
     </body>
     </html>
 {% endblock %}
