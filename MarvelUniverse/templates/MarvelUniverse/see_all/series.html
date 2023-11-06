@@ -1,0 +1,31 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>See All - Series</title>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/see_all.css' %}">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="content">
+                <div class="title white-text">
+                    <p>SERIES</p>
+                </div>
+                <div class="card-layout">
+                    {% for serie in series %}
+                        <li class="card">
+                            <div class="img">
+                                <img src="{{ serie.image }}">
+                                <p class="title-name">{{serie.title}}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
+{% endblock %}

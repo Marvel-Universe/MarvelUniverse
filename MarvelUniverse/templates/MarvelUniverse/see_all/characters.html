@@ -1,0 +1,31 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>See All - Characters</title>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/see_all.css' %}">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="content">
+                <div class="title white-text">
+                    <p>CHARACTERS</p>
+                </div>
+                <div class="card-layout">
+                    {% for character in characters %}
+                        <li class="card">
+                            <div class="img">
+                                <img src="{{ character.image }}">
+                                <p class="title-name">{{character.name}}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
+{% endblock %}
