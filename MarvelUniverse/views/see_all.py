@@ -3,8 +3,8 @@ from django.views import View
 from ..models import Character, Comic, Series
 
 
-class SeeAllCharactersView(View):
-    template_name = 'MarvelUniverse/see_all/characters.html'
+class AllCharactersView(View):
+    template_name = 'MarvelUniverse/see_all/all_characters.html'
 
     def get(self, request):
         characters = Character.objects.all()
@@ -15,8 +15,8 @@ class SeeAllCharactersView(View):
         return render(request, self.template_name, context)
 
 
-class SeeAllComicsView(View):
-    template_name = 'MarvelUniverse/see_all/comics.html'
+class AllComicsView(View):
+    template_name = 'MarvelUniverse/see_all/all_comics.html'
 
     def get(self, request):
         comics = Comic.objects.all()
@@ -27,8 +27,8 @@ class SeeAllComicsView(View):
         return render(request, self.template_name, context)
     
 
-class SeeAllSeriesView(View):
-    template_name = 'MarvelUniverse/see_all/series.html'
+class AllSeriesView(View):
+    template_name = 'MarvelUniverse/see_all/all_series.html'
 
     def get(self, request):
         series = Series.objects.all()
