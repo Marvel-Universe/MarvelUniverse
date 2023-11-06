@@ -21,7 +21,6 @@ from . import views
 from django.views.generic import TemplateView
 
 
-app_name = 'MarvelUniverse'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='marvel-universe/')),
