@@ -49,12 +49,10 @@
                 <div>
                     <div class="title white-text">
                         <p>CHARACTERS</p>
-                        <div class="see-all white-text" href="#">
-                            <a href="#" class="see-all white-text">
-                                See All
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
-                            </a>
-                        </div>
+                        <a class="see-all white-text" href="{% url 'MarvelUniverse:all-characters' %}">
+                            See All
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+                        </a>
                     </div>
                     <div class="slide-container">
                         <div class="wrapper" id="id1">
@@ -62,11 +60,13 @@
                             <ul class="carousel">
                                 {% for character in characters %}
                                     <li class="card">
-                                        <div class="img">
-                                            <img src="{{ character.image }}">
-                                        </div>
+                                        <a href="{% url 'MarvelUniverse:all-characters' %}">
+                                            <div class="img">
+                                                <img src="{{ character.image }}">
+                                                <p class="title-name">{{character.name}}</p>
+                                            </div>
+                                        </a>
                                     </li>
-                                    <p class="character-name">{{ character.name }}</p>                                                                   
                                 {% endfor %}
                             </ul>
                             <i class="fa-solid fa-angle-right" id="right"></i>
@@ -77,7 +77,7 @@
                 <div>
                     <div class="title white-text">
                         <p>COMICS</p>
-                        <a class="see-all white-text" href="#">
+                        <a class="see-all white-text" href="{% url 'MarvelUniverse:all-comics' %}">
                             See All
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
                         </a>
@@ -88,10 +88,13 @@
                             <ul class="carousel">
                                 {% for comic in comics %}
                                     <li class="card">
-                                        <div class="img">
-                                            <img src="{{ comic.image }}">
-                                        </div>
-                                    </li>                                                                   
+                                        <a href="#">
+                                            <div class="img">
+                                                <img src="{{ comic.image }}">
+                                                <p class="title-name">{{comic.title}}</p>
+                                            </div>
+                                        </a>     
+                                    </li>
                                 {% endfor %}
                             </ul>
                             <i class="fa-solid fa-angle-right" id="right"></i>
@@ -102,7 +105,7 @@
                 <div>
                     <div class="title white-text">
                         <p>SERIES</p>
-                        <a class="see-all white-text" href="#">
+                        <a class="see-all white-text" href="{% url 'MarvelUniverse:all-series' %}">
                             See All
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
                         </a>
@@ -112,11 +115,14 @@
                             <i class="fa-solid fa-angle-left" id="left"></i>
                             <ul class="carousel">
                                 {% for serie in series %}
-                                    <li class="card">
+                                <li class="card">
+                                    <a href="#">
                                         <div class="img">
                                             <img src="{{ serie.image }}">
+                                            <p class="title-name">{{serie.title}}</p>
                                         </div>
-                                    </li>                                                                   
+                                    </a>   
+                                </li>
                                 {% endfor %}
                             </ul>
                             <i class="fa-solid fa-angle-right" id="right"></i>

@@ -114,19 +114,16 @@ a {
     fill: white;
 }
 
-.character-name {
+.title-name {
     color: white;
     position: absolute;
-    top: 120px;
     opacity: 0;
-}
-
-.card img:hover{
-    opacity: 65%;
-}
-
-.character-name:hover {
-    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 111;
+    margin: 0;
+    text-align: center;
 }
 
 .see-all svg {
@@ -136,13 +133,25 @@ a {
 
 /* card */
 
+.card img:hover{
+    opacity: 50%;
+}
+
+.card .img:hover .title-name {
+    opacity: 1;
+}
+
 .card img {
-    position: relative;
-    width: 150px;
+    width: 100%;
     height: auto;
-    border-radius: 5px;
     object-fit: cover;
     cursor: pointer;
+}
+
+.card .img {
+    position: relative;
+    width: 150px;
+    border-radius: 5px;
 }
 
 /* card slider */
