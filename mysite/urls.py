@@ -26,7 +26,7 @@ urlpatterns = [
     path('marvel-universe/', include('MarvelUniverse.urls')),
     path("", include('django.contrib.auth.urls')),
     path('accounts/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('signup/', views.signup, name='signup'),
     path('', TemplateView.as_view(template_name="login_page/index.html")),
     path('accounts/', include('allauth.urls')),
