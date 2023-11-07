@@ -5,6 +5,8 @@
     <head>
         <title>See All - Comics</title>
         <link rel="stylesheet" href="{% static 'MarvelUniverse/css/see_all.css' %}">
+        <!-- Load search icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="main">
@@ -13,6 +15,10 @@
                 <div class="title white-text">
                     <p>COMICS</p>
                 </div>
+                <form class="search-by-name-box" method="get">
+                    <input type="text" placeholder="Search.." name="get_search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
                 <div class="card-layout">
                     {% for comic in comics %}
                         <li class="card">
