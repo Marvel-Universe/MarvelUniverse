@@ -1,13 +1,19 @@
 from django.shortcuts import render
 from django.views import View
 from ..models import Character, Comic, Series
+from django.contrib import messages
 
 
 class SeeAllCharactersView(View):
     template_name = 'MarvelUniverse/see_all/characters.html'
 
     def get(self, request):
-        characters = Character.objects.all()
+        if "get_search" in request.GET:
+            get_search = request.GET["get_search"]
+            characters = Character.objects.filter(name__icontains=get_search)[:]
+
+        else:
+            characters = Character.objects.all()
 
         context = {
             'characters': characters,
@@ -19,7 +25,11 @@ class SeeAllComicsView(View):
     template_name = 'MarvelUniverse/see_all/comics.html'
 
     def get(self, request):
-        comics = Comic.objects.all()
+        if "get_search" in request.GET:
+            get_search = request.GET["get_search"]
+            comics = Comic.objects.filter(title__icontains=get_search)[:]
+        else:
+            comics = Comic.objects.all()
 
         context = {
             'comics': comics,
@@ -31,7 +41,11 @@ class SeeAllSeriesView(View):
     template_name = 'MarvelUniverse/see_all/series.html'
 
     def get(self, request):
-        series = Series.objects.all()
+        if "get_search" in request.GET:
+            get_search = request.GET["get_search"]
+            series = Series.objects.filter(title__icontains=get_search)[:]
+        else:
+            series = Series.objects.all()
 
         context = {
             'series': series,
