@@ -4,8 +4,8 @@ from ..models import Character, Comic, Series
 from django.contrib import messages
 
 
-class SeeAllCharactersView(View):
-    template_name = 'MarvelUniverse/see_all/characters.html'
+class AllCharactersView(View):
+    template_name = 'MarvelUniverse/see_all/all_characters.html'
 
     def get(self, request):
         if "get_search" in request.GET:
@@ -21,8 +21,8 @@ class SeeAllCharactersView(View):
         return render(request, self.template_name, context)
 
 
-class SeeAllComicsView(View):
-    template_name = 'MarvelUniverse/see_all/comics.html'
+class AllComicsView(View):
+    template_name = 'MarvelUniverse/see_all/all_comics.html'
 
     def get(self, request):
         if "get_search" in request.GET:
@@ -37,8 +37,8 @@ class SeeAllComicsView(View):
         return render(request, self.template_name, context)
     
 
-class SeeAllSeriesView(View):
-    template_name = 'MarvelUniverse/see_all/series.html'
+class AllSeriesView(View):
+    template_name = 'MarvelUniverse/see_all/all_series.html'
 
     def get(self, request):
         if "get_search" in request.GET:
