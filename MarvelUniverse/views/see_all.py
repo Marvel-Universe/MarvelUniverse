@@ -17,6 +17,7 @@ class AllCharactersView(View):
 
         context = {
             'characters': characters,
+            'character_count': characters.count()
         }
         return render(request, self.template_name, context)
 
@@ -33,6 +34,7 @@ class AllComicsView(View):
 
         context = {
             'comics': comics,
+            'comics_count': comics.count()
         }
         return render(request, self.template_name, context)
     
@@ -49,6 +51,7 @@ class AllSeriesView(View):
 
         context = {
             'series': series,
+            'series_count': series.count()
         }
         return render(request, self.template_name, context)
     
