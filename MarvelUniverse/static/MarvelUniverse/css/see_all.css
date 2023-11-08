@@ -34,40 +34,39 @@ a {
 
 /* title */
 
-.title {
+.head {
     display: flex;
     justify-content: space-between;
     font-weight: 0;
-    align-items: end;
     margin-top: 30px;
+    align-items: end;
 }
 
-.title p {
+.head .name {
     font-size: 25px;
     font-weight: bold;
     margin: 0;
 }
 
-.title a {
+.head .count {
+    font-size: 18px;
+    margin-left: 14px;
+    margin-bottom: 2px;
+}
+
+.head a {
     font-size: 18px;
     list-style-type: none;
     text-decoration: none;
 }
 
-.title svg {
+.head svg {
     fill: white;
 }
 
-.title-name {
-    color: white;
-    position: absolute;
-    opacity: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 111;
-    margin: 0;
-    text-align: center;
+.head-name {
+    display: flex;
+    align-items: end;
 }
 
 /* card */
