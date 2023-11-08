@@ -159,3 +159,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
+
