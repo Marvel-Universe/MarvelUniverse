@@ -125,6 +125,7 @@ a {
     height: 10px;
     width: 200px;
     border-radius: 40px;
+    border: white;
     padding: 12.5px;    
     justify-content: right;
     align-items: center;
@@ -132,10 +133,10 @@ a {
     font-family: 'Roboto Condensed', sans-serif;
     color: white;
     padding-left: 20px;
-    font-size: 15px;
+    font-size: 17px;
   }
 
-  .search-btn {
+  .search-by-name-box button {
     width: 30px;
     height: 30px;
     justify-content: center;
@@ -143,9 +144,10 @@ a {
     text-decoration: none;
     border: black;
     cursor: pointer;
+    margin-left: 5px;
   }
 
-  .search-btn svg {
+  .search-by-name-box svg {
     fill: white;
     width: 30px;
     height: 30px;
@@ -153,6 +155,6 @@ a {
     border: black;
   }
 
-  .search-btn svg:hover {
+  .search-by-name-box svg:hover {
     fill: #EC1D24;
   }
