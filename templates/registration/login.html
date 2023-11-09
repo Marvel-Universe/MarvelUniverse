@@ -1,0 +1,225 @@
+{% load static %}
+{% load socialaccount %}
+<html>
+    <head>
+        <title>MarvelUniverse - Log in</title>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Roboto+Condensed&display=swap" rel="stylesheet">
+        <style>
+
+            body {
+                margin: 0;
+                background-color: black;
+                font-family: 'Roboto Condensed', sans-serif;
+            }
+
+            .flex {
+                display: flex;
+            }
+
+            .center {
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+            }
+
+            .white-text {
+                color: white;
+            }
+
+            .red-text {
+                color: #EC1D24;
+            }
+
+            .margin0 {
+                margin: 0;
+            }
+            
+            .main {
+                position: absolute;
+                width: 100%;
+                align-items: center;
+                top: 55px;
+                bottom: 0;
+                margin: auto 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr 414.3px 1fr;
+            }
+
+            nav {
+                position: fixed;
+                width: 100%;
+                height: 55px;
+                display: flex;
+                justify-content: space-between;
+                background-color: black;
+                padding: 0 10px;
+            }
+
+            .logo {
+                text-align: center;
+            }
+
+            .logo img {
+                width: 160px;
+                height: auto;
+                padding-top: 9px;
+            }
+
+            .ironman img {
+                width: 325px;
+                height: auto;
+            }
+
+            .login-box {
+                padding-left: 30px;
+            }
+
+            .welcome-text {
+                font-size: 30px;
+                font-weight: 900;
+            }
+
+            .fans-text {
+                font-size: 25px;
+                font-weight: 400;
+                margin: 5px 0 20px 0;
+            }
+
+            input[type=text],[type=password] {
+                position: relative;
+                background-color: white;
+                width: 100%;
+                height: 40px;
+                padding-left: 20px;
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 15px;
+                border-radius: 10px;
+            }
+
+            .password input {
+                margin-top: 20px;
+            }
+
+            .about-pw {
+                justify-content: space-between;
+            }
+
+            .remember-pw-text {
+                padding-left: 5px; 
+                margin-top: 15px;
+            }
+            
+            .forget-pw-link li {
+                list-style-type: none;
+            }
+
+            .forget-pw-link a {
+                color: white;
+                list-style-type: none;
+                text-decoration: none;
+            }
+
+            .forget-pw-link a:hover {
+                color: #EC1D24;
+            }
+
+            form button {
+                background-color: #EC1D24;
+                border-color: #EC1D24;
+                width: 100%;
+                height: 40px;
+                color: white;
+                font-size: 15px;
+                font-family: 'Roboto Condensed', sans-serif;
+                border-radius: 10px;
+            }
+
+            .signup {
+                margin-bottom: 20px;
+            }
+
+            .signup ul {
+                padding-left: 10px;
+            }
+
+            .sign-up-link li {
+                list-style-type: none;
+                padding-inline-start: 0;
+            }
+
+            .sign-up-link a {
+                color: #EC1D24;
+                text-decoration: 0;
+            }
+
+            .sign-up-link a:hover {
+                color: white;
+            }
+
+            .google-login button {
+                width: 100%;
+                height: 40px;
+                color: white;
+                background-color: black;
+                border-radius: 10px;
+                font-family: 'Roboto Condensed', sans-serif;
+                font-size: 15px;
+                border-color: white;
+                margin-bottom: 20px;
+            }
+
+            .google-login svg {
+                width: 20px;
+                padding-right: 5px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="logo"><img src="{% static 'logo.png' %}"></div>
+        </nav>
+        <div class="main center">
+            <div class="empty"></div>
+            <div class="ironman">
+                <img src="{% static 'ironman.png' %}">
+            </div>
+            <div class="login flex center">
+                <div class="login-box">
+                    <div>
+                        <p class="welcome-text red-text margin0">WELCOME BACK !</p>
+                        <p class="fans-text white-text">TRUE BELIEVERS</p>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="username">
+                            <input type="text" name="username" placeholder="username" required>
+                        </div>
+                        <div class="password">
+                            <input type="password" name="password" placeholder="password" required>
+                        </div>
+                        <div class="about-pw flex">
+                            <div class="flex center">
+                                <input class="check-box" type="checkbox" name="Remember password">
+                                <p class="remember-pw-text white-text">Remember Password</p>
+                            </div>
+                            <ul class="forget-pw-link"><li><a href="#">Forget password</a></li></ul>
+                        </div>
+                        <button type="submit" class="white-text margin0">Login</button>
+                    </form>
+                    <div class="google-login center">
+                        <button class="flex center" onclick="document.location='{% provider_login_url 'google' %}'">
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/></svg>
+                            Log in with Google
+                        </button>
+                    </div>
+                    <div class="signup flex center margin0">
+                        <p class="white-text margin0">Don’t Have an Account?</p>
+                        <ul class="sign-up-link margin0"><li><a href="{% url 'signup' %}">Sign up</a></li></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
