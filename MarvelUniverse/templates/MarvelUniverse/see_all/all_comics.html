@@ -27,10 +27,12 @@
                 <div class="card-layout">
                     {% for comic in comics %}
                         <li class="card">
-                            <div class="img">
-                                <img src="{{ comic.image }}">
-                                <p class="title-name">{{comic.title}}</p>
-                            </div>
+                            <a href="{% url 'MarvelUniverse:comics-detail' comic.pk %}">
+                                <div class="img">
+                                    <img src="{{ comic.image }}">
+                                    <p class="title-name">{{comic.title}}</p>
+                                </div>
+                            </a>
                         </li>
                     {% endfor %}
                 </div>

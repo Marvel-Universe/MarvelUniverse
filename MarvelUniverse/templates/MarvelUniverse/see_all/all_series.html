@@ -27,10 +27,12 @@
                 <div class="card-layout">
                     {% for serie in series %}
                         <li class="card">
-                            <div class="img">
-                                <img src="{{ serie.image }}">
-                                <p class="title-name">{{serie.title}}</p>
-                            </div>
+                            <a href="{% url 'MarvelUniverse:series-detail' serie.pk %}">
+                                <div class="img">
+                                    <img src="{{ serie.image }}">
+                                    <p class="title-name">{{serie.title}}</p>
+                                </div>
+                            </a>
                         </li>
                     {% endfor %}
                 </div>

@@ -27,10 +27,12 @@
         <div class="card-layout">
             {% for character in characters %}
             <li class="card">
-                <div class="img">
-                    <img src="{{ character.image }}">
-                    <p class="title-name">{{character.name}}</p>
-                </div>
+                <a href="{% url 'MarvelUniverse:characters-detail' character.pk %}">
+                    <div class="img">
+                        <img src="{{ character.image }}">
+                        <p class="title-name">{{character.name}}</p>
+                    </div>
+                </a>
             </li>
             {% endfor %}
         </div>
