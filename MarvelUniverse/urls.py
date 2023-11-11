@@ -9,7 +9,7 @@ urlpatterns = [
     path('all-characters/', AllCharactersView.as_view(), name="all-characters"),
     path('all-comics/', AllComicsView.as_view(), name="all-comics"),
     path('all-series/', AllSeriesView.as_view(), name="all-series"),   
-    path('characters/<int:pk>', CharactersDetailView.as_view(), name="characters-detail"),        
-    path('comics/<int:pk>', ComicsDetailView.as_view(), name="comics-detail"),        
-    path('series/<int:pk>', SeriesDetailView.as_view(), name="series-detail"),        
+    path('characters/<int:character_pk>', CharactersDetailView.as_view(), name="characters-detail"),        
+    path('comics/<int:comic_pk>', ComicsDetailView.as_view(), name="comics-detail"),        
+    path('series/<int:series_pk>', SeriesDetailView.as_view(), name="series-detail"),        
 ]
