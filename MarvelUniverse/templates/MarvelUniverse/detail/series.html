@@ -10,13 +10,39 @@
         <div class="main">
             <div class="empty"></div>
             <div class="content">
-                <section class="character">
+                <section class="character white-text">
                     <div class="character-img">
                         <img src="{{series.image}}">
                     </div>
                     <div class="detail flex">
                         <p class="name title">{{series.title}}</p>
                         <p class="description">{{series.description}}</p>
+                    </div>
+                </section>
+                <section class="comment-section">
+                    {% if not series_comments %}
+                        <p>no comment</p>
+                    {% else %}
+                        {% for comment in series_comments %}
+                            <div class="comments white-text" style="padding: 10px;">
+                                <p class="font-weight-bold">
+                                    {{ comment.user.username }}
+                                    <span class="text-muted font-weight-normal">
+                                        {{ comment.created_on }}
+                                    </span>
+                                </p>
+                                <p>Comment for Series: {{ comment.series.title }}</p>
+                                {{ comment.user_comment | linebreaks }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="white-text">Leave a comment</h3>
+                        <form method="post" style="margin-top: 1.3em;" class="black-text">
+                            <div class="text-box"> {{ comment_form.as_p }} </div>
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </form>
                     </div>
                 </section>
                 <!-- Characters Section -->
