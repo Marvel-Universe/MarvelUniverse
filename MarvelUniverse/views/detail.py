@@ -3,10 +3,11 @@ from django.views import View
 from ..models import Character, Comic, Series, CharacterInComic, CharacterInSeries
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
-from ..forms import CommentForm
-from ..models.comment_models import SeriesComment 
+from ..forms import SeriesCommentForm, ComicCommentForm
+from ..models.comment_models import SeriesComment, ComicComment
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
+
 
 class CharactersDetailView(View):
     template_name = 'MarvelUniverse/detail/characters.html'
@@ -29,7 +30,7 @@ class CharactersDetailView(View):
             'series_count': characters_series.count()
         }
         return render(request, self.template_name, context)
-        
+
 
 class ComicsDetailView(View):
     template_name = 'MarvelUniverse/detail/comics.html'
@@ -50,7 +51,7 @@ class ComicsDetailView(View):
         return render(request, self.template_name, context)
 
 
-@login_required
+@login_required(login_url='login')
 def series_detail_view(request, series_pk):
     if request.method == 'GET':
         try:
@@ -61,7 +62,7 @@ def series_detail_view(request, series_pk):
             characters_series = CharacterInSeries.objects.filter(series=series)
             characters_list = [character_series.character for character_series in characters_series]
         initial_data = {'user_comment': ''}
-        comment_form = CommentForm(initial=initial_data)
+        comment_form = SeriesCommentForm(initial=initial_data)
         context = {
             'series': series,
             'characters_list': characters_list,
@@ -78,7 +79,7 @@ def series_detail_view(request, series_pk):
         else:
             characters_series = CharacterInSeries.objects.filter(series=series)
             characters_list = [character_series.character for character_series in characters_series]
-        comment_form = CommentForm(data=request.POST)
+        comment_form = SeriesCommentForm(data=request.POST)
         if comment_form.is_valid():
             new_comment = comment_form.save(commit=False)
             new_comment.series = series
@@ -87,10 +88,10 @@ def series_detail_view(request, series_pk):
             new_comment.active = True
             new_comment.save()
             initial_data = {'user_comment': ''}
-            comment_form = CommentForm(initial=initial_data)
+            comment_form = SeriesCommentForm(initial=initial_data)
     else:
         initial_data = {'user_comment': ''}
-        comment_form = CommentForm(initial=initial_data)
+        comment_form = SeriesCommentForm(initial=initial_data)
     context = {
         'series': series,
         'characters_list': characters_list,
@@ -99,3 +100,24 @@ def series_detail_view(request, series_pk):
         'comment_form': comment_form
     }
     return render(request, 'MarvelUniverse/detail/series.html', context)
+
+
+@login_required(login_url='login')
+def comic_detail_view(request, series_pk):  # series_pk
+    template_name = 'MarvelUniverse/detail/comics.html'
+    comic = get_object_or_404(Series, pk=series_pk)  # use when link with detail when have series_pk
+    comments = ComicComment.objects.filter(comic=comic, active=True)
+
+    if request.method == 'POST':
+        comment_form = ComicCommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.comic = comic
+            new_comment.active = True
+            new_comment.user = request.user
+            new_comment.save()
+    else:
+        initial_data = {'user_comment': ''}
+        comment_form = ComicCommentForm(initial=initial_data)
+
+    return render(request, template_name, {'comic': comic, 'comments': comments, 'comment_form': comment_form})
