@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.views import View
 from ..models import Character, Comic, Series, CharacterInComic, CharacterInSeries
 from django.contrib import messages
-
+from django.shortcuts import render, get_object_or_404
+from ..forms import CommentForm
+from ..models.comment_models import SeriesComment 
+from django.contrib.auth.decorators import login_required
+from django.views.generic import DetailView
 
 class CharactersDetailView(View):
     template_name = 'MarvelUniverse/detail/characters.html'
@@ -25,7 +29,7 @@ class CharactersDetailView(View):
             'series_count': characters_series.count()
         }
         return render(request, self.template_name, context)
-    
+        
 
 class ComicsDetailView(View):
     template_name = 'MarvelUniverse/detail/comics.html'
@@ -33,7 +37,7 @@ class ComicsDetailView(View):
     def get(self, request, comic_pk):
         try:
             comic = Comic.objects.get(pk=comic_pk)
-        except Character.DoesNotExist:
+        except Comic.DoesNotExist:
             messages.error(f"Comic {comic_pk} not found")
         else:
             characters_comics = CharacterInComic.objects.filter(comic=comic)
@@ -46,21 +50,52 @@ class ComicsDetailView(View):
         return render(request, self.template_name, context)
 
 
-class SeriesDetailView(View):
-    template_name = 'MarvelUniverse/detail/series.html'
-
-    def get(self, request, series_pk):
+@login_required
+def series_detail_view(request, series_pk):
+    if request.method == 'GET':
         try:
             series = Series.objects.get(pk=series_pk)
-        except Character.DoesNotExist:
-            messages.error(f"Comic {series_pk} not found")
+        except Series.DoesNotExist:
+            messages.error(f"Series {series_pk} not found")
         else:
             characters_series = CharacterInSeries.objects.filter(series=series)
-        characters_list = [character_series.character for character_series in characters_series]
+            characters_list = [character_series.character for character_series in characters_series]
+        initial_data = {'user_comment': ''}
+        comment_form = CommentForm(initial=initial_data)
         context = {
             'series': series,
             'characters_list': characters_list,
             'characters_count': characters_series.count(),
+            'series_comments': SeriesComment.objects.filter(series=series),
+            'comment_form': comment_form
         }
-        return render(request, self.template_name, context)
-    
+        return render(request, 'MarvelUniverse/detail/series.html', context)
+    if request.method == 'POST':
+        try:
+            series = Series.objects.get(pk=series_pk)
+        except Series.DoesNotExist:
+            messages.error(f"Series {series_pk} not found")
+        else:
+            characters_series = CharacterInSeries.objects.filter(series=series)
+            characters_list = [character_series.character for character_series in characters_series]
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.series = series
+            new_comment.user = request.user
+            print(request.user)
+            new_comment.active = True
+            new_comment.save()
+            initial_data = {'user_comment': ''}
+            comment_form = CommentForm(initial=initial_data)
+    else:
+        initial_data = {'user_comment': ''}
+        comment_form = CommentForm(initial=initial_data)
+    context = {
+        'series': series,
+        'characters_list': characters_list,
+        'characters_count': characters_series.count(),
+        'series_comments': SeriesComment.objects.filter(series=series),
+        'comment_form': comment_form
+    }
+    return render(request, 'MarvelUniverse/detail/series.html', context)
