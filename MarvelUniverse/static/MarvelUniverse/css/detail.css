@@ -113,20 +113,46 @@ li {
     font-weight: bold solid 3px;
 }
 
+/* fav */
+
+.comment-title .fav {
+    padding-top: 12px;
+    padding-left: 4px;
+}
+
 .fav {
+    position: relative;
     justify-content: start;
     background: black;
-    border: black;
+    border: transparent;
     width: 30px;
     height: auto;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: transparent;
+}
+
+.fav.is-favorite {
+    background: transparent;
 }
 
 .fav svg {
-    fill: white;
+    width: 30px;
+    height: auto;
+    fill: none;
+    stroke: white;
+    stroke-width: 2px;
+    transition: fill 0.2s ease;
 }
 
-.fav svg:hover {
-    fill: red;
+.fav.is-favorite svg {
+    fill: #EC1D24;
+    stroke: transparent;
+}
+
+.fav:hover {
+    background-color: transparent;
+    transform: scale(1.1);
 }
 
 /* card */

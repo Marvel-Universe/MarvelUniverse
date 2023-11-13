@@ -20,7 +20,7 @@ def signup(request):
             user.last_name = lastname
             user.save()
             login(request, user)
-            return redirect('home')
+            return redirect('/')
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models.marvel_models import Character, Comic, Series, CharacterInComic, CharacterInSeries
 from .models.comment_models import SeriesComment, ComicComment
+from .models import FavoriteCharacter, FavoriteComic, FavoriteSeries
 
 # Register your models here.
 admin.site.register(Character)
@@ -8,6 +9,9 @@ admin.site.register(Comic)
 admin.site.register(Series)
 admin.site.register(CharacterInComic)
 admin.site.register(CharacterInSeries)
+admin.site.register(FavoriteSeries)
+admin.site.register(FavoriteComic)
+admin.site.register(FavoriteCharacter)
 
 
 @admin.register(SeriesComment)
