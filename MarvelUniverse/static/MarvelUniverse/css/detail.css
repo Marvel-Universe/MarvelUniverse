@@ -83,7 +83,11 @@ li {
 
 .detail {
     flex-direction: column;
-    margin-left: 20px;  
+    margin-left: 20px; 
+}
+
+.detail #text {
+    color: transparent;
 }
 
 .title {
@@ -121,7 +125,7 @@ li {
 }
 
 .comment-title {
-    color: black;
+    color: transparent;
 }
 
 .fav {
