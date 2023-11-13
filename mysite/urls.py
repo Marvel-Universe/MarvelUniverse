@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 from django.views.generic import TemplateView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='marvel-universe/')),
@@ -30,6 +31,4 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('', TemplateView.as_view(template_name="login_page/index.html")),
     path('accounts/', include('allauth.urls')),
-
-
 ]

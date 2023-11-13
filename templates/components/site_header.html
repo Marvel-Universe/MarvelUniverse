@@ -24,6 +24,7 @@
         justify-content: space-between;
         background-color: black;
         padding: 0 10px;
+        z-index: 999999;
       }
 
       ul {
@@ -188,10 +189,10 @@
         <div class="logo"><img src="{% static 'logo.png' %}"></div>
         <div class="menu">
           <ul>
-            <li class="menu-text"><a href="#">Home</a></li>
-            <li class="menu-text"><a href="#">Characters</a></li>
-            <li class="menu-text"><a href="#">Comics</a></li>
-            <li class="menu-text"><a href="#">Series</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:home' %}">Home</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:all-characters' %}">Characters</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:all-comics' %}">Comics</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:all-series' %}">Series</a></li>
           </ul>
         </div>
       </div>
