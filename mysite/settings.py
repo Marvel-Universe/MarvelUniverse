@@ -134,7 +134,7 @@ LOGIN_URL = '/accounts/login/'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Bangkok'q
+TIME_ZONE = 'Asia/Bangkok'
 
 USE_I18N = True
 
