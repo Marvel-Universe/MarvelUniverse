@@ -17,34 +17,42 @@
                     <div class="detail flex">
                         <p class="name title">{{series.title}}</p>
                         <p class="description">{{series.description}}</p>
-                    </div>
-                </section>
-                <section class="comment-section">
-                    {% if not series_comments %}
-                        <p>no comment</p>
-                    {% else %}
-                        {% for comment in series_comments %}
-                            <div class="comments white-text" style="padding: 10px;">
-                                <p class="font-weight-bold">
-                                    {{ comment.user.username }}
-                                    <span class="text-muted font-weight-normal">
-                                        {{ comment.created_on }}
-                                    </span>
-                                </p>
-                                <p>Comment for Series: {{ comment.series.title }}</p>
-                                {{ comment.user_comment | linebreaks }}
+                        <div class="line"></div>
+                        <div class="comment-section">
+                            <h3 class="white-text">{{series_comments_count}} Comments</h3>
+                            <div class="comment-form center">
+                                <div class="user-profile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>
+                                </div>
+                                <form method="post" class="black-text flex">
+                                    {% csrf_token %}
+                                    <input type="text" name="user_comment" placeholder="Add a comment...">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z"/></svg>
+                                    </button>
+                                </form>
                             </div>
-                        {% endfor %}
-                    {% endif %}
-                    <div class="card-body">
-                        <h3 class="white-text">Leave a comment</h3>
-                        <form method="post" style="margin-top: 1.3em;" class="black-text">
-                            <div class="text-box"> {{ comment_form.as_p }} </div>
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-                        </form>
+                            <!-- show comments -->
+                            <div class="comment-box">
+                                {% if series_comments %}
+                                    {% for comment in series_comments %}
+                                        <div class="comment">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>
+                                            <div class="comment-text white-text">
+                                                <div class="comment-detail flex">
+                                                    <p>{{ comment.user.username }}</p>
+                                                    <p>{{ comment.created_on }}</p>
+                                                </div>
+                                                <div class="body">{{ comment.user_comment | linebreaks }}</div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </section>
+                
                 <!-- Characters Section -->
                 {% if characters_list %}
                 <section>
