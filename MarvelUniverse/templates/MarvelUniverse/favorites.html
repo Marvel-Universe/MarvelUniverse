@@ -1,0 +1,83 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Favorites</title>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/favorites.css' %}">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="content">
+                <div class="page-title">Favorites</div>
+                <!-- Characters Section -->
+                {% if characters_list %}
+                <section>
+                    <div class="head white-text">
+                        <p class="title">CHARACTERS</p>
+                        <div class="count">{{characters_count}} Characters</div>
+                    </div>
+                    <div class="card-layout">
+                        {% for character in characters_list %}
+                        <li class="card">
+                            <a href="{% url 'MarvelUniverse:characters-detail' character.pk %}">
+                                <div class="img">
+                                    <img src="{{ character.image }}">
+                                    <p class="title-name">{{character.name}}</p>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
+                <!-- Comics Section -->
+                {% if comics_list %}
+                <section>
+                    <div class="head white-text">
+                        <p class="title">COMICS</p>
+                        <div class="count">{{comics_count}} Comics</div>
+                    </div>
+                    <div class="card-layout">
+                        {% for comic in comics_list %}
+                        <li class="card">
+                            <a href="{% url 'MarvelUniverse:comics-detail' comic.pk %}">
+                                <div class="img">
+                                    <img src="{{ comic.image }}">
+                                    <p class="title-name">{{comic.name}}</p>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
+                <!-- Series Section -->
+                {% if series_list %}
+                <section>
+                    <div class="head white-text">
+                        <p class="title">SERIES</p>
+                        <div class="count">{{series_count}} Series</div>
+                    </div>
+                    <div class="card-layout">
+                        {% for series in series_list %}
+                        <li class="card">
+                            <a href="{% url 'MarvelUniverse:series-detail' series.pk %}">
+                                <div class="img">
+                                    <img src="{{ series.image }}">
+                                    <p class="title-name">{{series.name}}</p>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
+            </div>
+            <div class="empty"></div>
+        </div>
+        <script src="{% static 'MarvelUniverse/js/toggle_favorite.js' %}"></script>
+    </body>
+</html>
+{% endblock %}
