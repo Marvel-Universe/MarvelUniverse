@@ -1,9 +1,29 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-
+from django.views import View
 from MarvelUniverse.models import Character, Comic, Series, FavoriteCharacter, FavoriteComic, FavoriteSeries
+from django.shortcuts import render
 
-from django.contrib.auth.decorators import user_passes_test
+
+class FavoriteView(View):
+    template_name = 'MarvelUniverse/favorites.html'
+
+    def get(self, request):
+        favorite_character = FavoriteCharacter.objects.filter(user=request.user)
+        favorite_comic = FavoriteComic.objects.filter(user=request.user)
+        favorite_series = FavoriteSeries.objects.filter(user=request.user)
+        characters_list = [favorite.character for favorite in favorite_character]
+        comics_list = [favorite.comic for favorite in favorite_comic]
+        series_list = [favorite.series for favorite in favorite_series]
+        context = {
+            'characters_list': characters_list,
+            'comics_list': comics_list,
+            'series_list': series_list,
+            'characters_count': len(characters_list),
+            'comics_count': len(comics_list),
+            'series_count': len(series_list)
+        }
+        return render(request, self.template_name, context)
 
 
 @login_required(login_url='login')
@@ -34,3 +54,5 @@ def toggle_favorite(request, model, object_id):
         return JsonResponse({'error': 'Invalid model type'})
 
     return JsonResponse({'is_favorite': is_favorite})
+
+
