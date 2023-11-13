@@ -120,6 +120,10 @@ li {
     padding-left: 4px;
 }
 
+.comment-title {
+    color: black;
+}
+
 .fav {
     position: relative;
     justify-content: start;
@@ -139,15 +143,18 @@ li {
 .fav svg {
     width: 30px;
     height: auto;
-    fill: none;
+    fill: white;
+    opacity: 70%;
+    /* border-radius: white;
     stroke: white;
-    stroke-width: 2px;
+    stroke-width: 2px; */
     transition: fill 0.2s ease;
 }
 
 .fav.is-favorite svg {
     fill: #EC1D24;
     stroke: transparent;
+    opacity: 1;
 }
 
 .fav:hover {
