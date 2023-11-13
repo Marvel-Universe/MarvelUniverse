@@ -71,7 +71,7 @@ li {
     height: 525px;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    margin-top: 8px;
+    margin-top: 30px;
     margin-bottom: 16px;
 }
 
