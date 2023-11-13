@@ -42,8 +42,8 @@
                                                 <div class="comment-detail flex">
                                                     <p>{{ comment.user.username }}</p>
                                                     <p>{{ comment.created_on }}</p>
-                                                </div>
-                                                <div class="body">{{ comment.user_comment | linebreaks }}</div>
+                                                    </div>
+                                                <div class="comment-body">{{ comment.user_comment | linebreaks }}</div>
                                             </div>
                                         </div>
                                     {% endfor %}
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </section>
-                
+            
                 <!-- Characters Section -->
                 {% if characters_list %}
                 <section>
