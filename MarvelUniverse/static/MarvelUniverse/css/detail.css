@@ -32,13 +32,12 @@ li {
 }
 
 .content {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
 }
 
 .flex {
     display: flex;
-    flex-direction: column;
 }
 
 .card-layout {
@@ -64,26 +63,28 @@ li {
 } 
 
 .description {
-    margin-top: 16px;
+    margin: 16px 0;
     font-size: 20px;
 }
 
 .character {
+    height: 525px;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    margin-top: 50px;
+    margin-top: 8px;
     margin-bottom: 16px;
 }
 
 .character img {
-    width: 300px;
+    width: 350px;
     height: auto;
     object-fit: cover;
 }
 
 .detail {
     flex-direction: column;
-    padding-right: 150px;    
+    margin-left: 20px;  
+    justify-content: center;
 }
 
 .title {
@@ -174,4 +175,119 @@ li {
     font-weight: bold solid 3px;
 }
 
+.line {
+    width: 100%;
+    height: 1px;
+    background-color:rgba(255, 255, 255, 0.788);
+}
+
 /* comment */
+
+.comment {
+    flex-direction: row;
+}
+
+.comment-detail {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.comment-form {
+    display: grid;
+    grid-template-columns: 0.3fr 6fr;
+    margin: 14px 0;
+    justify-content: left;
+    width: 100%;
+}
+
+form {
+    justify-content: left;
+}
+
+h3 {
+    margin-top: 16px;
+}
+
+form button {
+    background-color: transparent;
+    width: 28px;
+    height: auto;
+    font-size: 15px;
+    font-family: 'Roboto Condensed', sans-serif;
+    border: black;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.user-profile svg {
+    width: 40px;
+    height: auto;
+    fill: white;
+}
+
+form button svg {
+    fill: white;
+    width: 28px;
+    height: auto;
+}
+
+form button svg:hover {
+    fill: #EC1D24;
+}
+
+form input[type=text]{
+    height: 10px;
+    width: 100%;
+    border-radius: 40px;
+    border: white;
+    padding: 12.5px;    
+    justify-content: right;
+    align-items: center;
+    background-color: rgba(255,255,255,0.2);
+    font-family: 'Roboto Condensed', sans-serif;
+    color: white;
+    padding-left: 20px;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.comment {
+    margin-bottom: 15px;
+    justify-content: left;
+    display: grid;
+    grid-template-columns: 0.3fr 6fr;
+}
+
+.comment svg {
+    width: 40px;
+    height: auto;
+    fill: white;
+}
+
+.comment-text {
+    margin-left: 10px;
+}
+
+.comment-text .body {
+    margin-top: 6px;
+}
+
+.comment-box {
+    height: 260px;
+    overflow: scroll;
+    overflow-x: visible;
+}
+
+.comment-box::-webkit-scrollbar {
+    width: 20px;
+}
+
+.comment-section {
+    height: 100%;
+}
+
+.comment-body {
+    overflow-wrap: break-word; 
+    word-wrap: break-word; 
+    word-break: break-word;
+}
