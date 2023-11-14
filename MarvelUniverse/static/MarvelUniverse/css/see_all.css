@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-a {
+li {
     list-style-type: none;
     text-decoration: none;
 }
@@ -25,6 +25,7 @@ a {
     display: grid;
     grid-template-columns: repeat(7, 150px);
     gap: 12px;
+    margin: 12px 0;
 }
 
 .not-found-layout {
