@@ -143,9 +143,11 @@
         </style>
     </head>
     <body>
-        <nav>
-            <div class="logo"><img src="{% static 'logo.png' %}"></div>
-        </nav>
+        <div class="logo">
+            <a href="{% url 'MarvelUniverse:home' %}">
+                <img src="{% static 'logo.png' %}"></div>
+            </a>        
+        </div>
         <div class="main center">
             <div class="empty"></div>
             <div class="signup-box-padding-0">

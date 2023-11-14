@@ -177,7 +177,11 @@
     </head>
     <body>
         <nav>
-            <div class="logo"><img src="{% static 'logo.png' %}"></div>
+            <div class="logo">
+                <a href="{% url 'MarvelUniverse:home' %}">
+                  <img src="{% static 'logo.png' %}">
+                </a>
+            </div>
         </nav>
         <div class="main center">
             <div class="empty"></div>
