@@ -25,7 +25,10 @@ class CharactersDetailView(View):
             characters_series = CharacterInSeries.objects.filter(character=character)
         comics_list = [character_comic.comic for character_comic in characters_comics]
         series_list = [character_series.series for character_series in characters_series]
-        is_favorite = FavoriteCharacter.objects.filter(user=request.user, character=character).exists()
+        if request.user.is_authenticated:
+            is_favorite = FavoriteCharacter.objects.filter(user=request.user, character=character).exists()
+        else:
+            is_favorite = False
         context = {
             'character': character,
             'comics_list': comics_list,
@@ -37,7 +40,7 @@ class CharactersDetailView(View):
         return render(request, self.template_name, context)   
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def comic_detail_view(request, comic_pk):
     try:
         comic = Comic.objects.get(pk=comic_pk)
@@ -61,7 +64,10 @@ def comic_detail_view(request, comic_pk):
             initial_data = {'user_comment': ''}
             comment_form = ComicCommentForm(initial=initial_data)
     comic_comments = ComicComment.objects.filter(comic=comic, active=True)
-    is_favorite = FavoriteComic.objects.filter(user=request.user, comic=comic).exists()
+    if request.user.is_authenticated:
+        is_favorite = FavoriteComic.objects.filter(user=request.user, comic=comic).exists()
+    else:
+        is_favorite = False
     context = {
         'comic': comic,
         'characters_list': characters_list,
@@ -74,7 +80,7 @@ def comic_detail_view(request, comic_pk):
     return render(request, 'MarvelUniverse/detail/comics.html', context)
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def series_detail_view(request, series_pk):
     try:
         series = Series.objects.get(pk=series_pk)
@@ -99,7 +105,10 @@ def series_detail_view(request, series_pk):
             initial_data = {'user_comment': ''}
             comment_form = SeriesCommentForm(initial=initial_data)
     series_comments = SeriesComment.objects.filter(series=series, active=True)
-    is_favorite = FavoriteSeries.objects.filter(user=request.user, series=series).exists()
+    if request.user.is_authenticated:
+        is_favorite = FavoriteSeries.objects.filter(user=request.user, series=series).exists()
+    else:
+        is_favorite = False
     context = {
         'series': series,
         'characters_list': characters_list,

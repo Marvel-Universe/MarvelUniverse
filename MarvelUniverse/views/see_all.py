@@ -17,7 +17,8 @@ class AllCharactersView(View):
 
         context = {
             'characters': characters,
-            'character_count': characters.count()
+            'character_count': characters.count(),
+            'get_search': request.GET["get_search"]
         }
         return render(request, self.template_name, context)
 
