@@ -27,7 +27,7 @@
         <div class="card-layout">
             {% for character in characters %}
             <li class="card">
-                <a href="{% url 'MarvelUniverse:characters-detail' character.pk %}">
+                <a href="#">
                     <div class="img">
                         <img src="{{ character.image }}">
                         <p class="title-name">{{character.name}}</p>

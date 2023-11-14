@@ -60,7 +60,7 @@
                             <ul class="carousel">
                                 {% for character in characters %}
                                     <li class="card">
-                                        <a href="{% url 'MarvelUniverse:characters-detail' character.pk %}">
+                                        <a href="#">
                                             <div class="img">
                                                 <img src="{{ character.image }}">
                                                 <p class="title-name">{{character.name}}</p>
@@ -88,7 +88,7 @@
                             <ul class="carousel">
                                 {% for comic in comics %}
                                     <li class="card">
-                                        <a href="{% url 'MarvelUniverse:comics-detail' comic.pk %}">
+                                        <a href="#">
                                             <div class="img">
                                                 <img src="{{ comic.image }}">
                                                 <p class="title-name">{{comic.title}}</p>
@@ -116,7 +116,7 @@
                             <ul class="carousel">
                                 {% for serie in series %}
                                 <li class="card">
-                                    <a href="{% url 'MarvelUniverse:series-detail' serie.pk %}">
+                                    <a href="#">
                                         <div class="img">
                                             <img src="{{ serie.image }}">
                                             <p class="title-name">{{serie.title}}</p>
