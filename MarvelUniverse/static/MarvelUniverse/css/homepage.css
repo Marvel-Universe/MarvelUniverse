@@ -164,6 +164,7 @@ a {
 
 .carousel {
     list-style-type: none;
+    margin-block-start: 12px;
     margin-block-end: 20px;
 }
 
