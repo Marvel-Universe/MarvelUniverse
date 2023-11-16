@@ -169,6 +169,8 @@ li {
 /* reset button */
 
 .reset-button svg {
-    margin-top: 3px;
-    margin-right: 4px;
+    width: 28px;
+    height: auto;
+    margin-top: 5px;
+    margin-right: 8px;
 }
