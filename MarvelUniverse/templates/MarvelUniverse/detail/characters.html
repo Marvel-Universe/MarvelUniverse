@@ -1,0 +1,69 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Detail - characters</title>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/detail.css' %}">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="content">
+                <section class="character white-text">
+                    <div class="character-img">
+                        <img src="{{character.image}}">
+                    </div>
+                    <div class="detail flex">
+                        <p class="name title">{{character.name}}</p>
+                        <p class="description">{{character.description}}</p>
+                    </div>
+                </section>
+                <!-- Comics Section -->
+                {% if comics_list %}
+                <section>
+                    <div class="head white-text">
+                        <p class="title">COMICS</p>
+                        <div class="count">{{comics_count}} Comics</div>
+                    </div>
+                    <div class="card-layout">
+                        {% for comic in comics_list %}
+                        <li class="card">
+                            <a href="{% url 'MarvelUniverse:comics-detail' comic.pk %}">
+                                <div class="img">
+                                    <img src="{{ comic.image }}">
+                                    <p class="title-name">{{comic.name}}</p>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
+                <!-- Series Section -->
+                {% if series_list %}
+                <section>
+                    <div class="head white-text">
+                        <p class="title">SERIES</p>
+                        <div class="count">{{series_count}} Series</div>
+                    </div>
+                    <div class="card-layout">
+                        {% for series in series_list %}
+                        <li class="card">
+                            <a href="{% url 'MarvelUniverse:series-detail' series.pk %}">
+                                <div class="img">
+                                    <img src="{{ series.image }}">
+                                    <p class="title-name">{{series.name}}</p>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
+            </div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
+{% endblock %}
