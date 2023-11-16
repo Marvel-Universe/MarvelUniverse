@@ -3,11 +3,11 @@ for (i = 0; i < carousels.length; i++) {
     const carousel = document.querySelector(`#id${i+1} .carousel`)
 
     const arrowBtns = document.querySelectorAll(`#id${i+1} i`)
-    const fisrtCardWith = carousel.querySelector(".card").offsetWidth;
+    const fisrtCardWidth = carousel.querySelector(".card").offsetWidth;
     const carouselChildrens = [...carousel.children];
 
     let isDragging = false;
-    let cardPerView = Math.round(carousel.offsetWidth / fisrtCardWith)
+    let cardPerView = Math.round(carousel.offsetWidth / fisrtCardWidth)
 
     carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
         carousel.insertAdjacentHTML("afterbegin", card.outerHTML)
@@ -19,7 +19,7 @@ for (i = 0; i < carousels.length; i++) {
 
     arrowBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            carousel.scrollLeft += btn.id === "left" ? -fisrtCardWith : fisrtCardWith;
+            carousel.scrollLeft += btn.id === "left" ? -fisrtCardWidth * cardPerView : fisrtCardWidth * cardPerView;
         })
     })
 
