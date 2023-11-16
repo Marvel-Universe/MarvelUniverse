@@ -124,6 +124,7 @@ li {
 .search-by-name-box {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .search-by-name-box input[type="text"] {
@@ -139,9 +140,9 @@ li {
     color: white;
     padding-left: 20px;
     font-size: 17px;
-  }
+}
 
-  .search-by-name-box button {
+.search-by-name-box button {
     width: 30px;
     height: 30px;
     justify-content: center;
@@ -150,16 +151,24 @@ li {
     border: black;
     cursor: pointer;
     margin-left: 5px;
-  }
+    margin-top: 4px;
+}
 
-  .search-by-name-box svg {
+.search-by-name-box svg {
     fill: white;
     width: 30px;
     height: 30px;
     background-color: black;
     border: black;
-  }
+}
 
-  .search-by-name-box svg:hover {
+.search-by-name-box svg:hover {
     fill: #EC1D24;
-  }
+}
+
+/* reset button */
+
+.reset-button svg {
+    margin-top: 3px;
+    margin-right: 4px;
+}
