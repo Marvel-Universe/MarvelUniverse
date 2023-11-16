@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-family: 'Roboto Condensed', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box {
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 400px;
+    color: white;
+}
+h3 {
+    color: #EC1D24;
+    text-align: center;
+}
+form > p {
+    margin-bottom: 20px;
+}
+input[type="email"], input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+input[type="submit"] {
+    background-color: #EC1D24;
+    width: 40%;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.submit-button-container {
+    text-align: center;
+}
+
+.login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #EC1D24;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+.submit-button-container {
+    text-align: center;
+}
+
+h3 {
+    color: #EC1D24;
+    text-align: center;
+}
+p {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-button, .ok-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #EC1D24;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+.submit-button-container {
+    text-align: center;
+}
+
+.button {
+    background-color: #EC1D24;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
