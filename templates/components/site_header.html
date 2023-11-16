@@ -24,6 +24,7 @@
         justify-content: space-between;
         background-color: black;
         padding: 0 10px;
+        z-index: 999999;
       }
 
       ul {
@@ -152,6 +153,10 @@
         position: relative;
       }
 
+      .dropdown .icon {
+        cursor: pointer;
+      }
+
       .dropdown-content {
         display: none;
         position: absolute;
@@ -185,13 +190,17 @@
 <body>
     <nav>
       <div class="left-nav flex-center">
-        <div class="logo"><img src="{% static 'logo.png' %}"></div>
+        <div class="logo">
+          <a href="{% url 'MarvelUniverse:home' %}">
+            <img src="{% static 'logo.png' %}">
+          </a>
+        </div>
         <div class="menu">
           <ul>
-            <li class="menu-text"><a href="#">Home</a></li>
-            <li class="menu-text"><a href="#">Characters</a></li>
-            <li class="menu-text"><a href="#">Comics</a></li>
-            <li class="menu-text"><a href="#">Series</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:home' %}">Home</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:characters' %}">Characters</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:comics' %}">Comics</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:series' %}">Series</a></li>
           </ul>
         </div>
       </div>
@@ -229,7 +238,9 @@
                       <a href="#">About</a>
                       <a href="#">Review</a>
                       <a href="#">Quiz</a>
-                      <a href="{% url 'logout' %}">Log out</a>
+                      {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}">Log out</a>
+                      {% endif %}
                   </div>
               </li>
             </div>
