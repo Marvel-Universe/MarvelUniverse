@@ -14,7 +14,7 @@ class AllCharactersView(View):
             characters = Character.objects.filter(name__icontains=get_search)[:]
         else:
             characters = Character.objects.all()
-
+        
         context = {
             'characters': characters,
             'character_count': characters.count(),
