@@ -30,7 +30,7 @@
                 <div class="card-layout">
                     {% for serie in series %}
                         <li class="card">
-                            <a href="{% url 'MarvelUniverse:series-detail' series.pk %}">
+                            <a href="{% url 'MarvelUniverse:series-detail' serie.pk %}">
                                 <div class="img">
                                     <img src="{{ serie.image }}">
                                     <p class="title-name">{{serie.title}}</p>
