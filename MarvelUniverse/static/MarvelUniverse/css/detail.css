@@ -118,6 +118,61 @@ li {
     font-weight: bold solid 3px;
 }
 
+.fav {
+    position: relative;
+    justify-content: start;
+    background: black;
+    border: transparent;
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: transparent;
+}
+
+.fav.is-favorite {
+    background: transparent;
+}
+
+.fav svg {
+    width: 30px;
+    height: auto;
+    fill: white;
+    opacity: 70%;
+    /* border-radius: white;
+    stroke: white;
+    stroke-width: 2px; */
+    transition: fill 0.2s ease;
+}
+    fill: white;
+    opacity: 70%;
+    /* border-radius: white;
+    stroke: white;
+    stroke-width: 2px; */
+    transition: fill 0.2s ease;
+}
+
+.fav.is-favorite svg {
+    fill: #EC1D24;
+    stroke: transparent;
+    opacity: 1;
+}
+
+.fav:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+}
+.fav.is-favorite svg {
+    fill: #EC1D24;
+    stroke: transparent;
+    opacity: 1;
+}
+
+.fav:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+}
+
 /* card */
 
 .card {
