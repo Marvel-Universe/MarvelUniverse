@@ -33,7 +33,6 @@ SITE_ID = 2
 
 INSTALLED_APPS = [
     'MarvelUniverse.apps.MarveluniverseConfig',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -45,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'django.contrib.admin',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
