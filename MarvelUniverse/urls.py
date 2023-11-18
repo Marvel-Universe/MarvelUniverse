@@ -9,9 +9,9 @@ from .views.favorites import FavoriteView
 app_name = "MarvelUniverse"
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
-    path('all-characters/', AllCharactersView.as_view(), name="characters"),
-    path('all-comics/', AllComicsView.as_view(), name="comics"),
-    path('all-series/', AllSeriesView.as_view(), name="series"),
+    path('characters/', AllCharactersView.as_view(), name="characters"),
+    path('comics/', AllComicsView.as_view(), name="comics"),
+    path('series/', AllSeriesView.as_view(), name="series"),
     path('characters/<int:character_pk>', CharactersDetailView.as_view(), name="characters-detail"),
     path('comics/<int:comic_pk>', comic_detail_view, name="comics-detail"),
     path('series/<int:series_pk>', series_detail_view, name="series-detail"),
