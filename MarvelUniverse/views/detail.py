@@ -3,8 +3,8 @@ from django.views import View
 from ..models import Character, Comic, Series, CharacterInComic, CharacterInSeries
 from django.contrib import messages
 from django.shortcuts import render
-from ..forms import SeriesCommentForm, ComicCommentForm
-from ..models.comment_models import SeriesComment, ComicComment
+from ..forms import SeriesCommentForm, ComicCommentForm, CharacterCommentForm
+from ..models.comment_models import SeriesComment, ComicComment, CharacterComment
 from ..models import FavoriteCharacter, FavoriteComic, FavoriteSeries
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -25,6 +25,20 @@ class CharactersDetailView(View):
             characters_series = CharacterInSeries.objects.filter(character=character)
         comics_list = [character_comic.comic for character_comic in characters_comics]
         series_list = [character_series.series for character_series in characters_series]
+        if request.method == 'GET':
+            initial_data = {'user_comment': ''}
+            comment_form = CharacterCommentForm(initial=initial_data)
+        elif request.method == 'POST':
+            comment_form = CharacterCommentForm(data=request.POST)
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.character = character
+                new_comment.user = request.user
+                new_comment.active = True
+                new_comment.save()
+                initial_data = {'user_comment': ''}
+                comment_form = CharacterCommentForm(initial=initial_data)
+        character_comments = CharacterComment.objects.filter(character=character, active=True)
         if request.user.is_authenticated:
             is_favorite = FavoriteCharacter.objects.filter(user=request.user, character=character).exists()
         else:
@@ -35,7 +49,9 @@ class CharactersDetailView(View):
             'series_list': series_list,
             'comics_count': characters_comics.count(),
             'series_count': characters_series.count(),
-            'is_favorite': is_favorite
+            'is_favorite': is_favorite,
+            'comment_form': comment_form,
+            'character_comments_count': character_comments.count(),
         }
         return render(request, self.template_name, context)
 
