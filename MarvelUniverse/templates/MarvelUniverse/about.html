@@ -1,0 +1,51 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/about.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+              integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="content">
+                <!-- About section -->
+                <section class="about-us">
+                    <div class="marvel-img">
+                      <img src="{% static 'MarvelUniverse/img/marvel-pf.png' %}" alt="Marvel IMG">
+                    </div>
+                    <!-- ABOUT US -->
+                    <div class="about-us-info">
+                        <p class="title">ABOUT US</p>
+                        <hr> <!-- Horizontal line -->
+                        <br>
+                        <p class="info1"> Marvel Universe is your go-to platform for effortless exploration,
+                            enjoyment, and sharing thoughts on everything Marvel. As a user-friendly guide,
+                            it goes beyond basic information, providing a space to discover Marvel characters,
+                            series, and comics. Engage in a vibrant community, read others' opinions, express
+                            your own, and dive into the Marvel universe through interactive quizzes.
+                            <br>
+                            <br>
+                            As devoted Marvel fans, we've enhanced the experience with all features. Dive deep into
+                            Marvel backgrounds. Join us on this fantastic journey through the Marvel Universe!
+                        </p>
+                        <br>
+                        <br>
+                    <!-- CONTACT US -->
+                    <div class="contact-us-info">
+                        <p class="title">CONTACT US</p>
+                        <hr> <!-- Horizontal line -->
+                        <br>
+                        <img src="{% static 'MarvelUniverse/img/gmail.png' %}" alt="mail icon">
+                        <p class="info2"><a href='https://marvel.universe@gmail.com/' target="_blank">marvel.universe@gmail.com</a></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>
+{% endblock %}

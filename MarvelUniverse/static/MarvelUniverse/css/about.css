@@ -1,0 +1,112 @@
+* {
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.white-text {
+    color: white;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
+/* layout setting */
+
+.main {
+    display: grid;
+    grid-template-columns: 2fr 10fr 2fr;
+    position: relative;
+    top: 60px;
+}
+
+.content {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* About Us */
+
+.about-us {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 50px;
+    margin-bottom: 16px;
+}
+
+.marvel-img img {
+    width: 315px;
+    height: auto;
+    object-fit: cover;
+}
+
+.detail-info {
+    flex-direction: column;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+hr {
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 2px;
+    border-color: #EC1D24;
+    background-color: gray;
+}
+
+.info1 {
+    font-size: 18px;
+}
+
+/* Contact Us */
+
+.email-img img {
+    width: 64px;
+    height: auto;
+    object-fit: cover;
+}
+
+.info2 {
+    display: inline;
+    position: absolute;
+    left: 600px;
+    top: 415px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.info2 a {
+    color: white;
+    transition: color 0.3s ease;
+    text-decoration: underline;
+}
+
+.info2 a:hover {
+    color: #EC1D24;
+}
+
