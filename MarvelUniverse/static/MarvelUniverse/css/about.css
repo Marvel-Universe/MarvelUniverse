@@ -44,8 +44,7 @@ li {
 .about-us {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    margin-top: 30px;
-    margin-bottom: 16px;
+    margin: 16px 0;
 }
 
 .marvel-img {
@@ -63,7 +62,7 @@ li {
 
 .about-us-info {
     flex-direction: column;
-    margin-left: 20px;
+    margin-left: 0.1rem;
     justify-content: center;
 }
 
@@ -108,17 +107,19 @@ hr {
     height: auto;
     object-fit: cover;
     align-items: center;
+    justify-content: center;
+    position: absolute;
+    display: inline;
+    flex-direction: column;
 }
 
 .info2 {
     display: inline;
     position: absolute;
-    left: 630px;
-    top: 423px;
     font-size: 23px;
     text-decoration: underline;
     flex-direction: column;
-    margin-left: 20px;
+    margin: 10px 10px 10px 20px;
 }
 
 .info2 a {
@@ -142,8 +143,8 @@ hr {
 }
 
 .profileBx img {
-    width: 315px;
-    height: 416px;
+    width: 250px;
+    height: 350px;
     object-fit: cover;
 }
 
@@ -152,17 +153,17 @@ hr {
     width: 1350px;
     height: auto;
     display: flex;
-    /*justify-content: center;*/
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
  .containers .cards {
      position: relative;
-     width: 315px;
-     height: 416px;
+     width: 250px;
+     height: 350px;
      background: linear-gradient(#EC1D24, #EC1D24 30%, black 30%, black);
-     margin: 10px;
+     margin: 25px;
      border-radius: 20px;
      overflow: hidden;
  }
@@ -203,7 +204,7 @@ hr {
      justify-content: center;
      align-items: flex-end;
      padding-top: 10px;
-     margin-top: -45px;
+     margin-top: -25px;
      transform: translateY(100%);
      transition: 0.5s;
  }
@@ -221,13 +222,13 @@ hr {
  }
 
   .containers .cards .members .info h2 {
-     font-size: 1.5rem;
+     font-size: 1.3rem;
      font-weight: bolder;
      color: white;
  }
 
  .containers .cards .members .info h2 span {
-     font-size: 1rem;
+     font-size: 0.95rem;
      font-weight: bolder;
      color: white;
  }
