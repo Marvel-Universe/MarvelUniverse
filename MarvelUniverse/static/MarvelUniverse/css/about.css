@@ -31,12 +31,11 @@ li {
 
 .content {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    flex-direction: column;
 }
 
 .flex {
     display: flex;
-    flex-direction: column;
 }
 
 
@@ -45,22 +44,31 @@ li {
 .about-us {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 16px;
 }
 
+.marvel-img {
+    width: 375px;
+    height: auto;
+    position: relative;
+    object-fit: cover;
+}
+
 .marvel-img img {
-    width: 315px;
+    width: 375px;
     height: auto;
     object-fit: cover;
 }
 
-.detail-info {
+.about-us-info {
     flex-direction: column;
+    margin-left: 20px;
+    justify-content: center;
 }
 
 .title {
-    font-size: 32px;
+    font-size: 35px;
     font-weight: bold;
     margin: 0;
 }
@@ -68,10 +76,10 @@ li {
 hr {
     display: block;
     unicode-bidi: isolate;
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
+    margin-block-start: 1px;
+    margin-block-end: 1px;
+    margin-inline-start: 1px;
+    margin-inline-end: 1px;
     overflow: hidden;
     border-style: inset;
     border-width: 2px;
@@ -80,24 +88,37 @@ hr {
 }
 
 .info1 {
-    font-size: 18px;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.info1 #text {
+    display: none;
 }
 
 /* Contact Us */
+
+.contact-info {
+    display: flex;
+    align-items: center;
+}
 
 .email-img img {
     width: 64px;
     height: auto;
     object-fit: cover;
+    align-items: center;
 }
 
 .info2 {
     display: inline;
     position: absolute;
-    left: 600px;
-    top: 415px;
-    font-size: 20px;
+    left: 630px;
+    top: 423px;
+    font-size: 23px;
     text-decoration: underline;
+    flex-direction: column;
+    margin-left: 20px;
 }
 
 .info2 a {
@@ -110,3 +131,132 @@ hr {
     color: #EC1D24;
 }
 
+
+/* Team Members */
+
+.team-members {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 30px;
+    margin-bottom: 16px;
+}
+
+.profileBx img {
+    width: 315px;
+    height: 416px;
+    object-fit: cover;
+}
+
+.containers {
+    position: relative;
+    width: 1350px;
+    height: auto;
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+ .containers .cards {
+     position: relative;
+     width: 315px;
+     height: 416px;
+     background: linear-gradient(#EC1D24, #EC1D24 30%, black 30%, black);
+     margin: 10px;
+     border-radius: 20px;
+     overflow: hidden;
+ }
+
+ .containers .cards .profileBx {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     transition: 0.5s;
+     z-index: 100000;
+     border-radius: 20px;
+     transform-origin: top;
+     overflow: hidden;
+ }
+
+ .containers .cards:hover .profileBx {
+     transform: translateY(30px) scale(0.5);
+ }
+
+ .containers .cards .profileBx img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+ .containers .cards .members {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: flex-end;
+     padding-top: 10px;
+     margin-top: -45px;
+     transform: translateY(100%);
+     transition: 0.5s;
+ }
+
+ .containers .cards:hover .members {
+     transform: translateY(0);
+ }
+
+ .containers .cards .members .info {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     text-align: center;
+ }
+
+  .containers .cards .members .info h2 {
+     font-size: 1.5rem;
+     font-weight: bolder;
+     color: white;
+ }
+
+ .containers .cards .members .info h2 span {
+     font-size: 1rem;
+     font-weight: bolder;
+     color: white;
+ }
+
+ .contact-icons {
+     position: relative;
+     display: flex;
+     margin-top: 5px;
+ }
+
+ .contact-icons li {
+     list-style: none;
+     margin: 4px;
+ }
+
+ .contact-icons li a {
+     width: 45px;
+     height: 45px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background: #EC1D24;
+     border-radius: 50%;
+     font-size: 1.5rem;
+     color: white;
+     text-decoration: none;
+     transition: 0.5s;
+ }
+
+ .contact-icons li a:hover {
+     background: #FF9B9B;
+ }
