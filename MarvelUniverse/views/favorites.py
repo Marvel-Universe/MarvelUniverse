@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views import View
-from MarvelUniverse.models import Character, Comic, Series, FavoriteCharacter, FavoriteComic, FavoriteSeries
+from ..models import Character, Comic, Series, FavoriteCharacter, FavoriteComic, FavoriteSeries
 from django.shortcuts import render
 
 
