@@ -18,5 +18,5 @@ urlpatterns = [
     path('characters/<int:character_pk>', character_detail_view, name="characters-detail"),
     path('comics/<int:comic_pk>', comic_detail_view, name="comics-detail"),
     path('series/<int:series_pk>', series_detail_view, name="series-detail"),
-    path('about/', AboutUsView.as_view(), name='about')
+    path('about/', AboutUsView.as_view(), name='about'),
 ]
