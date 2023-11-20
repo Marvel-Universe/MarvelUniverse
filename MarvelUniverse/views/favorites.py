@@ -3,10 +3,13 @@ from django.http import JsonResponse
 from django.views import View
 from ..models import Character, Comic, Series, FavoriteCharacter, FavoriteComic, FavoriteSeries
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class FavoriteView(View):
+class FavoriteView(LoginRequiredMixin,View):
     template_name = 'MarvelUniverse/favorites.html'
+    login_url = 'login'
+    redirect_field_name = 'login'
 
     def get(self, request):
         favorite_character = FavoriteCharacter.objects.filter(user=request.user)
