@@ -109,7 +109,7 @@
         <script type="text/javascript">
             document.getElementById('commentForm').onsubmit = function() {
                 {% if not user.is_authenticated %}
-                    alert('Login first');
+                    alert('Please sign in to post a comment.');
                     return false;
                 {% endif %}
                 return true;
