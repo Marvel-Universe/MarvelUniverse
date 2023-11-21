@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const csrfTokenElement = document.querySelector('[name=csrfmiddlewaretoken]');
             const csrftoken = csrfTokenElement ? csrfTokenElement.value : null;
 
-            fetch(`/marvel-universe/${model}s/${objectId}/toggle_favorite/`, {
+            fetch(`/marvel-universe/${model}/${objectId}/toggle_favorite/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
