@@ -4,8 +4,6 @@ from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
 
 
-
-
 def signup(request):
     """Register a new user."""
     if request.method == 'POST':
@@ -23,25 +21,7 @@ def signup(request):
             user.last_name = lastname
             user.save()
             login(request, user)
-            return redirect('home')
+            return redirect('/')
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
-
-
-def custom_login_view(request):
-    error_message = None
-
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            # other login logic
-            return HttpResponseRedirect('/success')
-        else:
-            error_message = "Username or password is incorrect."
-
-    return render(request, 'login.html', {'error_message': error_message})
