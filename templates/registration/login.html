@@ -88,7 +88,7 @@
             input[type=text],[type=password] {
                 position: relative;
                 background-color: white;
-                width: 100%;
+                width: 300px;
                 height: 40px;
                 padding-left: 20px;
                 font-family: 'Roboto Condensed', sans-serif;
@@ -101,16 +101,18 @@
             }
 
             .about-pw {
-                justify-content: space-between;
+                justify-content: center;
             }
 
-            .remember-pw-text {
-                padding-left: 5px; 
-                margin-top: 15px;
+            .error-message p {
+                color: #EC1D24; /* Red color for error text */
+                text-align: center;
             }
-            
+
             .forget-pw-link li {
                 list-style-type: none;
+                margin-top: 5px;
+                margin-bottom: 5px;
             }
 
             .forget-pw-link a {
@@ -202,13 +204,12 @@
                         <div class="password">
                             <input type="password" name="password" placeholder="password" required>
                         </div>
-                        <div class="about-pw flex">
-                            <div class="flex center">
-                                <input class="check-box" type="checkbox" name="remember_me">
-                                <p class="remember-pw-text white-text">Remember Password</p>
+                        {% if form.errors %}
+                            <div class="error-message">
+                                <p class="white-text">Invalid username or password.</p>
                             </div>
-                            <ul class="forget-pw-link"><li><a href="{% url 'reset_password' %}">Forget password</a></li></ul>
-                        </div>
+                        {% endif %}
+                        <div class="forget-pw-link"><li><a href="{% url 'reset_password' %}">Forget password</a></li></div>
                         <button type="submit" class="white-text margin0">Login</button>
                     </form>
                     <div class="google-login center">
