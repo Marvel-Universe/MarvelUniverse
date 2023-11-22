@@ -10,8 +10,8 @@ from ..models import CharacterQuestion, CharacterChoice
 from django.contrib import messages
 
 
-class StartQuizView(View):
-    template_name = 'MarvelUniverse/quiz/start-quiz.html'
+class SelectQuizView(View):
+    template_name = 'MarvelUniverse/quiz/select-quiz.html'
 
     def get(self, request):
         return render(request, self.template_name)
