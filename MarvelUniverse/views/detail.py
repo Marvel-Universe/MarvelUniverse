@@ -9,6 +9,17 @@ from django.urls import reverse
 
 
 def character_detail_view(request, character_pk):
+    """
+    View to display details about a character, including associated comics, series, and user comments.
+
+    Parameters:
+    - request (HttpRequest): The HTTP request.
+    - character_pk (int): The primary key of the character.
+
+    Returns:
+    - HttpResponse: Rendered character details page.
+
+    """
     try:
         character = Character.objects.get(pk=character_pk)
     except Character.DoesNotExist:
@@ -53,6 +64,17 @@ def character_detail_view(request, character_pk):
 
 # @login_required(login_url='login')
 def comic_detail_view(request, comic_pk):
+    """
+     View to display details about a comic, including associated characters, user comments, and favorite status.
+
+     Parameters:
+     - request (HttpRequest): The HTTP request.
+     - comic_pk (int): The primary key of the comic.
+
+     Returns:
+     - HttpResponse: Rendered comic details page.
+
+     """
     try:
         comic = Comic.objects.get(pk=comic_pk)
     except Comic.DoesNotExist:
@@ -93,6 +115,17 @@ def comic_detail_view(request, comic_pk):
 
 # @login_required(login_url='login')
 def series_detail_view(request, series_pk):
+    """
+    View to display details about a series, including associated characters, user comments, and favorite status.
+
+    Parameters:
+    - request (HttpRequest): The HTTP request.
+    - series_pk (int): The primary key of the series.
+
+    Returns:
+    - HttpResponse: Rendered series details page.
+
+    """
     try:
         series = Series.objects.get(pk=series_pk)
     except Series.DoesNotExist:
