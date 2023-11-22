@@ -5,7 +5,7 @@ from .views.see_all import AllCharactersView, AllComicsView, AllSeriesView
 from .views.detail import character_detail_view, comic_detail_view, series_detail_view
 from .views.favorites import toggle_favorite
 from .views.favorites import FavoriteView
-from .views.quiz import StartQuizView, CharacterInstructionView, ComicInstructionView, SeriesInstructionView, random_quiz
+from .views.quiz import SelectQuizView, CharacterInstructionView, ComicInstructionView, SeriesInstructionView, random_quiz
 
 
 app_name = "MarvelUniverse"
@@ -21,7 +21,7 @@ urlpatterns = [
     path('series/<int:series_pk>', series_detail_view, name="series-detail"),
     path('about/', AboutUsView.as_view(), name='about'),
     # quiz url
-    path('quiz/', StartQuizView.as_view(), name='start-quiz'),
+    path('quiz/', SelectQuizView.as_view(), name='select-quiz'),
     # quiz instruction
     path('quiz/character-instruction/', CharacterInstructionView.as_view(), name='character-instruction'),
     path('quiz/comic-instruction/', ComicInstructionView.as_view(), name='comic-instruction'),
