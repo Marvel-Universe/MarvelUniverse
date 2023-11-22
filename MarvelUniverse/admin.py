@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models.marvel_models import Character, Comic, Series, CharacterInComic, CharacterInSeries
 from .models.comment_models import SeriesComment, ComicComment, CharacterComment
-from .models.quiz import CharacterQuestion, CharacterChoice, ComicQuestion, ComicChoice, SeriesQuestion, SeriesChoice
+from .models.quiz_models import CharacterQuestion, CharacterChoice, ComicQuestion, ComicChoice, SeriesQuestion, SeriesChoice
 
 # marvel models
 admin.site.register(Character)

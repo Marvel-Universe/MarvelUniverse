@@ -11,6 +11,10 @@
     color: black;
 }
 
+.red-text {
+    color: #EC1D24;
+}
+
 .center {
     align-items: center;
     justify-content: center;
@@ -72,11 +76,14 @@ a {
     height: 360px;
     padding: 6px;
     transition: 0.2s ease-in-out;
+    background-color: #EC1D24;
+    border-radius: 10px;
 }
 
 .option:hover {
     border-radius: 10px;
     border: 3px solid white;
+    background-color: black;
 }
 
 .option h2 {
