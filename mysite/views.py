@@ -21,7 +21,7 @@ def signup(request):
             user.last_name = lastname
             user.save()
             login(request, user)
-            return redirect('/')
+            return redirect('MarvelUniverse:home')
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
