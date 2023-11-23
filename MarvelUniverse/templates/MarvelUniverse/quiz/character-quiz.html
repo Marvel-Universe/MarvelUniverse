@@ -1,0 +1,48 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Quiz - Character</title>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/quiz.css' %}">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="content">
+                <section class="character-quiz flex">
+                    <div class="box">
+                        <div class="character-cards">
+                            <div class="character-img">
+                                <img src="{{question.image}}">
+                            </div>
+                            <div class="character-detail">
+                                <div class="character-des">
+                                    <p>{{question.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="{% url 'MarvelUniverse:character-quiz' question.pk %}" method="post" class="question-form">
+                        {% csrf_token %}
+                        <h1 class="white-text title-name">GUESS WHO ?</h1>
+                        <div class="choice flex">
+                            {% for choice in choices %}
+                                <input type="radio" name="choice_id" value="{{ choice.id }}">
+                                <p class="black-text">{{choice.character_name}}</p>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="submit-button">Submit</button>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="white-text">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </form>
+                </section>
+            </div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
+{% endblock %}

@@ -27,10 +27,6 @@ urlpatterns = [
     path('quiz/character-instruction/', CharacterInstructionView.as_view(), name='character-instruction'),
     path('quiz/comic-instruction/', ComicInstructionView.as_view(), name='comic-instruction'),
     path('quiz/series-instruction/', SeriesInstructionView.as_view(), name='series-instruction'),
-    
-    # path('quiz/character-quiz/', random_character_question, name='random-character-question'),
-    # path('quiz/comic-quiz/', random_comic_question, name='random-comic-question'),
-    # path('quiz/series-quiz/', random_series_question, name='random-series-question'),
 
     path('quiz/character-quiz/<int:question_pk>', character_quiz_view, name='character-quiz'),
     path('quiz/comic-quiz/<int:question_pk>', comic_quiz_view, name='comic-quiz'),
