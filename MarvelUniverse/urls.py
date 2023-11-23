@@ -5,6 +5,7 @@ from .views.see_all import AllCharactersView, AllComicsView, AllSeriesView
 from .views.detail import character_detail_view, comic_detail_view, series_detail_view
 from .views.favorites import toggle_favorite
 from .views.favorites import FavoriteView
+from .views.profile import ProfileView
 
 
 app_name = "MarvelUniverse"
@@ -19,4 +20,6 @@ urlpatterns = [
     path('comics/<int:comic_pk>', comic_detail_view, name="comics-detail"),
     path('series/<int:series_pk>', series_detail_view, name="series-detail"),
     path('about/', AboutUsView.as_view(), name='about'),
+    path('profile/', ProfileView.as_view(), name='profile'),
+
 ]
