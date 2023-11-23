@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 class UserData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_data')
-    profile_img_url = models.URLField(max_length=500, blank=True, null=True)
-    trophy_img = models.CharField(max_length=100, blank=True, null=True, default="")
+    profile_img_url = models.URLField(max_length=500, blank=True, null=True, default="")
+    trophy_img = models.URLField(max_length=100, blank=True, null=True, default="")
     scores = models.IntegerField(default=0)
 
     def __str__(self):
