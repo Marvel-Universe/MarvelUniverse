@@ -2,13 +2,22 @@ from django.contrib import admin
 from .models.marvel_models import Character, Comic, Series, CharacterInComic, CharacterInSeries
 from .models.comment_models import SeriesComment, ComicComment, CharacterComment
 from .models.user_data_models import UserData
+from .models.quiz_models import CharacterQuestion, CharacterChoice, ComicQuestion, ComicChoice, SeriesQuestion, SeriesChoice
 
-# Register your models here.
+# marvel models
 admin.site.register(Character)
 admin.site.register(Comic)
 admin.site.register(Series)
 admin.site.register(CharacterInComic)
 admin.site.register(CharacterInSeries)
+
+# quiz models
+admin.site.register(CharacterQuestion)
+admin.site.register(CharacterChoice)
+admin.site.register(ComicQuestion)
+admin.site.register(ComicChoice)
+admin.site.register(SeriesQuestion)
+admin.site.register(SeriesChoice)
 
 
 @admin.register(SeriesComment)
