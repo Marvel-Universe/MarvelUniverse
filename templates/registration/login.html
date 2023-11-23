@@ -88,7 +88,7 @@
             input[type=text],[type=password] {
                 position: relative;
                 background-color: white;
-                width: 100%;
+                width: 300px;
                 height: 40px;
                 padding-left: 20px;
                 font-family: 'Roboto Condensed', sans-serif;
@@ -101,16 +101,18 @@
             }
 
             .about-pw {
-                justify-content: space-between;
+                justify-content: center;
             }
 
-            .remember-pw-text {
-                padding-left: 5px; 
-                margin-top: 15px;
+            .error-message p {
+                color: #EC1D24; /* Red color for error text */
+                text-align: center;
             }
-            
+
             .forget-pw-link li {
                 list-style-type: none;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
             }
 
             .forget-pw-link a {
@@ -126,16 +128,18 @@
             form button {
                 background-color: #EC1D24;
                 border-color: #EC1D24;
-                width: 100%;
+                width: 300px;
                 height: 40px;
                 color: white;
                 font-size: 15px;
                 font-family: 'Roboto Condensed', sans-serif;
                 border-radius: 10px;
+                margin:  20px 0;
             }
 
             .signup {
                 margin-bottom: 20px;
+                justify-content: space-between;
             }
 
             .signup ul {
@@ -148,12 +152,12 @@
             }
 
             .sign-up-link a {
-                color: #EC1D24;
+                color: white;
                 text-decoration: 0;
             }
 
             .sign-up-link a:hover {
-                color: white;
+                color: #EC1D24;
             }
 
             .google-login button {
@@ -165,7 +169,6 @@
                 font-family: 'Roboto Condensed', sans-serif;
                 font-size: 15px;
                 border-color: white;
-                margin-bottom: 20px;
             }
 
             .google-login svg {
@@ -194,7 +197,7 @@
                         <p class="welcome-text red-text margin0">WELCOME BACK !</p>
                         <p class="fans-text white-text">TRUE BELIEVERS</p>
                     </div>
-                    <form method="post">
+                    <form method="post" class="margin0">
                         {% csrf_token %}
                         <div class="username">
                             <input type="text" name="username" placeholder="username" required>
@@ -202,14 +205,12 @@
                         <div class="password">
                             <input type="password" name="password" placeholder="password" required>
                         </div>
-                        <div class="about-pw flex">
-                            <div class="flex center">
-                                <input class="check-box" type="checkbox" name="Remember password">
-                                <p class="remember-pw-text white-text">Remember Password</p>
+                        {% if form.errors %}
+                            <div class="error-message">
+                                <p class="red-text">Invalid username or password.</p>
                             </div>
-                            <ul class="forget-pw-link"><li><a href="#">Forget password</a></li></ul>
-                        </div>
-                        <button type="submit" class="white-text margin0">Login</button>
+                        {% endif %}
+                        <button type="submit" class="white-text">Login</button>
                     </form>
                     <div class="google-login center">
                         <button class="flex center" onclick="document.location='{% provider_login_url 'google' %}'">
@@ -218,7 +219,7 @@
                         </button>
                     </div>
                     <div class="signup flex center margin0">
-                        <p class="white-text margin0">Don’t Have an Account?</p>
+                        <div class="forget-pw-link margin0"><li><a href="{% url 'reset_password' %}">Forget password</a></li></div>
                         <ul class="sign-up-link margin0"><li><a href="{% url 'signup' %}">Sign up</a></li></ul>
                     </div>
                 </div>
