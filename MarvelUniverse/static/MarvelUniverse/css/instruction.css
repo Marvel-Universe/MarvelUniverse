@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.white-text {
+    color: white;
+}
+
+.black-text {
+    color: black;
+}
+
+.red-text {
+    color: #EC1D24;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+a {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+/* layout setting */
+
+.main {
+    display: grid;
+    grid-template-columns: 2fr 10fr 2fr;
+    position: relative;
+    top: 60px;
+}
+
+.quiz-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.title {
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+.detail {
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.detail #text {
+    display: none;
+
+}
+
+.start {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 60px;
+    font-style: italic;
+    margin-top: 3rem;
+}
+
+.start.title {
+    position: relative;
+}
+
+.start.title + .start.title {
+    margin-top: 2px;
+}
+
+.description {
+    font-size: 18px;
+    margin: 35px 250px 15px 10px;
+    padding-left: 0.1rem;
+}
+
+.out-liner {
+    text-shadow: -1.5px -1.5px 0 #fff, 2px -1.5px 0 #fff, -1.5px 2px 0 grey, 2px 2px 0 gray;
+}
+
+.blog-card {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 85%;
+    max-width: 900px;
+    margin-top: 2rem;
+    background-color:gray;
+    border-radius: 25px;
+    box-shadow: 0 2px 20px gray;
+    transition: box-shadow 0.3s;
+}
+
+
+.blog-card:hover {
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+    background-color:white;
+}
+
+
+.start-quiz {
+    flex-direction: column;
+    margin-left: 0.1rem;
+    justify-content: center;
+}
+
+
+.intro-quiz {
+    position: relative;
+}
+
+.intro-quiz::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 3px;
+    height: 100%;
+    background-color: #46C892;
+    display: block;
+    border-color: #46C892;
+}
+
+.deadpool-quiz img {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 6%;
+    transform: translateX(-12%);
+    margin-top: 30px;
+    width: 350px;
+    height: auto;
+    margin-left: 925px;
+    transition: transform 0.2s;
+}
+
+.deadpool-quiz img:hover {
+    transform: scale(1.1) translateX(-12%);
+}
+
+
+.circle {
+    position: absolute;
+    top: 75%;
+    left: 82%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: -1;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.circle:hover {
+    background-color: yellow;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
