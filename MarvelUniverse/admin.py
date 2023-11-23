@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models.marvel_models import Character, Comic, Series, CharacterInComic, CharacterInSeries
 from .models.comment_models import SeriesComment, ComicComment, CharacterComment
+from .models.user_data_models import UserData
 
 # Register your models here.
 admin.site.register(Character)
@@ -40,3 +41,8 @@ class ComicCommentAdmin(admin.ModelAdmin):
 
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
+
+@admin.register(UserData)
+class UserDataAdmin(admin.ModelAdmin):
+    list_display = ('user', 'profile_img_url', 'trophy_img', 'scores')
+    search_fields = ('user__username',)
