@@ -1,0 +1,1 @@
+web gunicorn MarvelUniverse.wsgi:application --log-file -
