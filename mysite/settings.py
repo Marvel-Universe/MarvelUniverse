@@ -178,4 +178,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
+CSRF_TRUSTED_ORIGINS = ["https://marvel-universe-d10a25c19d7d.herokuapp.com"] 
+
 django_heroku.settings(locals())
