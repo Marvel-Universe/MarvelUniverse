@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
 from .forms import SignupForm
+from django.contrib.auth import login, authenticate
+from django.http import HttpResponseRedirect
 
 
 def signup(request):
@@ -27,7 +28,7 @@ def signup(request):
             user.last_name = lastname
             user.save()
             login(request, user)
-            return redirect('home')
+            return redirect('MarvelUniverse:home')
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
