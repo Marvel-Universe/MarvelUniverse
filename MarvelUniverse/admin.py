@@ -28,7 +28,7 @@ class SeriesCommentAdmin(admin.ModelAdmin):
     """
     list_display = ('user', 'user_comment', 'series', 'created_on', 'active')
     list_filter = ('active', 'created_on')
-    search_fields = ('user', 'email', 'user_comment') # Note the use of user__username to search by username
+    search_fields = ('user', 'email', 'user_comment')  # Note the use of user__username to search by username
     actions = ['approve_comments']
 
     def approve_comments(self, request, queryset):
@@ -60,6 +60,7 @@ class CharacterCommentAdmin(admin.ModelAdmin):
         """Approves selected comments."""
         queryset.update(active=True)
 
+
 @admin.register(ComicComment)
 class ComicCommentAdmin(admin.ModelAdmin):
     """
@@ -83,8 +84,8 @@ class ComicCommentAdmin(admin.ModelAdmin):
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
 
+
 @admin.register(UserData)
 class UserDataAdmin(admin.ModelAdmin):
     list_display = ('user', 'profile_img_url', 'trophy_img', 'scores')
     search_fields = ('user__username',)
-
