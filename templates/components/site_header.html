@@ -157,20 +157,21 @@
         color: white;
         padding-left: 5px;
         margin: 0;
+        margin-top: 2.5px;
       }
 
-    .profile-icon {
-        display: flex;
-        align-items: center;
-    }
+      .profile-icon {
+          display: flex;
+          align-items: center;
+      }
 
-    .profile-icon img {
-        width: 20px;
-        height: 20px; 
-        border-radius: 50%;
-        margin-right: 5px;
-        margin-left: 10px;
-    }
+      .profile-icon img {
+          width: 25px;
+          height: 25px; 
+          border-radius: 50%;
+          margin-right: 5px;
+          margin-left: 10px;
+      }
 
       .dropdown {
         position: relative;
@@ -242,7 +243,7 @@
               </a>
             </li>
             {% if user.is_authenticated %}
-            <div class="user">
+            <div class="user center">
               <a href="{% url 'MarvelUniverse:profile' %}" class="flex-row">
                 <div class="profile-icon">
                   <img src="{{ user.user_data.profile_img_url }}" alt="Profile Image">
