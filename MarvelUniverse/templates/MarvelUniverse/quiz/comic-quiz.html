@@ -5,40 +5,36 @@
     <head>
         <title>Quiz - Comic</title>
         <link rel="stylesheet" href="{% static 'MarvelUniverse/css/quiz.css' %}">
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/comic-series-quiz.css' %}">
     </head>
     <body>
         <div class="main">
             <div class="empty"></div>
-            <div class="content">
-                <section class="character-quiz flex">
-                    <div class="box">
-                        <div class="character-cards">
-                            <div class="character-img">
-                                <img src="{{question.image}}">
-                            </div>
-                            <div class="character-detail">
-                                <div class="character-des">
-                                    <p>{{question.description}}</p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="content center">
+                <div class="white-text comic-series-quiz-info flex">
+                    <div>Question {{question_number}}</div>
+                    <div>{{scores_per_game}} Points</div>
+                </div>
+                <section class="comic-series-quiz-section flex-row center">
+                    <div class="quiz-title white-text">COMIC QUIZ</div>
+                    <div class="comic-series-poster-img">
+                        <img src="{{question.image}}">
                     </div>
-                    <form action="{% url 'MarvelUniverse:comic-quiz' question.pk %}" method="post" class="question-form">
+                    <form action="{% url 'MarvelUniverse:comic-quiz' question.pk %}" method="post">
                         {% csrf_token %}
-                        <h1 class="white-text title-name"> ?</h1>
-                        <div class="choice flex">
+                        <div class="black-text question-text">Who is the character in <br> this {{question.title}} comic?</div>
+                        <div class="comic-series-radio-section flex-row">
                             {% for choice in choices %}
-                                <input type="radio" name="choice_id" value="{{ choice.id }}">
-                                <p class="black-text">{{choice.character_name}}</p>
-                                <img src="{{choice.image}}">
+                            <div class="comic-series-radio-item flex-column">
+                                <div class="choice-radio flex-row">
+                                    <input type="radio" name="choice_id" value="{{ choice.id }}" id="choice{{choice.id}}">
+                                    <label class="black-text" for="choice{{ choice.id }}">{{choice.character_name}}</label>
+                                </div>
+                                <img src="{{choice.character_image}}">
+                            </div>
                             {% endfor %}
-                        </div>
-                        <button type="submit" class="submit-button">Submit</button>
-                        {% if messages %}
-                            {% for message in messages %}
-                                <p class="white-text">{{message}}</p>
-                            {% endfor %}
-                        {% endif %}
+                        </div>  
+                        <button type="submit" class="submit-button center">Submit</button>
                     </form>
                 </section>
             </div>
