@@ -1,38 +1,87 @@
 {% extends 'components/base.html' %}
 {% load static %}
+
 {% block content %}
 <html>
     <head>
-        <title>PROFILE</title>
+        <title>{{ username }}'s Profile</title>
         <link rel="stylesheet" href="{% static 'MarvelUniverse/css/profile.css' %}">
+        <script src="{% static 'MarvelUniverse/js/avatar-selection.js' %}"></script>
+
+        <!-- Include CSRF token in the head of the HTML document -->
+        <script>
+            const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+            window.csrfToken = csrfToken;  // Make it accessible globally
+        </script>
     </head>
     <body>
         <div class="main">
             <div class="empty"></div>
             <div class="content">
-              <div class="page-title">{{ username }}'s Profile</div>
+                <div class="page-title">{{ username }}'s Profile</div>
                 <p class="mail">Email: {{ email }}</p>
                 <p class="score">Scores: {{ scores }}</p>
                 <p class="date-joined">True Believers Since: {{ date_joined }}</p>
 
 
-                <!-- Profile Image -->
-                {% if profile_img_url %}
-                    <img src="{{ profile_img_url }}" alt="Profile Image">
-                {% else %}
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                        <path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/>
-                    </svg>
-                {% endif %}
+                <!-- Selected Avatar Container -->
+<div id="selected-avatar-container">
+    {% if profile_img_url %}
+        <!-- Add a class for styling purposes (e.g., profile-image-small) -->
+        <img class="profile-image profile-image-small" src="{{ profile_img_url }}" alt="Profile Image">
+    {% else %}
+        <svg class="fallback-svg" xmlns="http://www.w3.org/2000/svg" height="150" viewBox="0 -960 960 960" width="150">
+            <path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/>
+        </svg>
+    {% endif %}
+</div>
 
-                <!-- Trophy Image -->
-                {% if trophy_img %}
-                    <img src="{{ trophy_img }}" alt="Trophy Image">
-                {% endif %}
+                <!-- Select Avatar Button -->
+                <button id="select-avatar-btn">Select Avatar</button>
 
-                <!-- You can include more HTML elements based on your user data model -->
+                <!-- Avatar Modal -->
+<!-- Avatar Modal -->
+<div id="avatar-modal" class="modal">
+    <div class="modal-content">
+        <span id="close-avatar-modal" class="close">&times;</span>
+        <!-- Display small images for avatar choices -->
+        <div class="avatar-option" data-avatar="https://i.ibb.co/86zNtMK/iron.jpg">
+            <img src="https://i.ibb.co/86zNtMK/iron.jpg" alt="Avatar 1" class="avatar-thumbnail">
+        </div>
+        <div class="avatar-option" data-avatar="https://i.ibb.co/SyCdgfG/spiderman.png">
+            <img src="https://i.ibb.co/SyCdgfG/spiderman.png" alt="Avatar 2" class="avatar-thumbnail">
+        </div>
+        <div class="avatar-option" data-avatar="https://i.ibb.co/42C99XK/black1.jpg">
+            <img src="https://i.ibb.co/42C99XK/black1.jpg" alt="Avatar 3" class="avatar-thumbnail">
+        </div>
+                <div class="avatar-option" data-avatar="https://i.ibb.co/Ryr6M8y/captain.jpg">
+            <img src="https://i.ibb.co/Ryr6M8y/captain.jpg" alt="Avatar 4" class="avatar-thumbnail">
+        </div>
+                <div class="avatar-option" data-avatar="https://i.ibb.co/Gtg0TJ6/doctor-strange.png">
+            <img src="https://i.ibb.co/Gtg0TJ6/doctor-strange.png" alt="Avatar 5" class="avatar-thumbnail">
+        </div>
+                <div class="avatar-option" data-avatar="https://i.ibb.co/VJcSJpv/hulk.jpg">
+            <img src="https://i.ibb.co/VJcSJpv/hulk.jpg" alt="Avatar 6" class="avatar-thumbnail">
+        </div>
+                <div class="avatar-option" data-avatar="https://i.ibb.co/FxjpWLD/loki.jpg">
+            <img src="https://i.ibb.co/FxjpWLD/loki.jpg" alt="Avatar 7" class="avatar-thumbnail">
+        </div>
+                <div class="avatar-option" data-avatar="https://i.ibb.co/MPbmVQs/scarlet.jpg">
+            <img src="https://i.ibb.co/MPbmVQs/scarlet.jpg" alt="Avatar 8" class="avatar-thumbnail">
+        </div>
+                        <div class="avatar-option" data-avatar="https://i.ibb.co/j8n9VtJ/thanos.jpg">
+            <img src="https://i.ibb.co/j8n9VtJ/thanos.jpg" alt="Avatar 9" class="avatar-thumbnail">
+        </div>
+                        <div class="avatar-option" data-avatar="https://i.ibb.co/b3CGGsq/thor.jpg">
+            <img src="https://i.ibb.co/b3CGGsq/thor.jpg" alt="Avatar 10" class="avatar-thumbnail">
+        </div>
+    </div>
+</div>
+
+
             </div>
+            <div class="empty"></div>
         </div>
     </body>
-  </html>
+</html>
 {% endblock %}
