@@ -10,7 +10,16 @@ from django.core.management import call_command
 
 
 class CommentModelsTest(TestCase):
+    """
+    Test suite for the comment models including SeriesComment, ComicComment, and CharacterComment.
+    """
+
     def setUp(self):
+        """
+        Set up data for testing comment models.
+        This includes creating test users and test instances for Series, Comic, and Character,
+        along with their respective comments.
+        """
         call_command('loaddata', os.getcwd() + '/data/google-oauth-data.json', '--exclude=contenttypes')
         self.user = User.objects.create_user(username='Sankung', password='Sankung1234')
         self.series = Series.objects.create(title='San series')
@@ -41,6 +50,10 @@ class CommentModelsTest(TestCase):
         )
 
     def test_comment_created(self):
+        """
+        Test that comments are correctly created and associated with their respective user and content.
+        Verifies that the comment data matches what was provided during creation.
+        """
         self.assertEqual(self.series_comment.user_comment, 'Nice series')
         self.assertEqual(self.series_comment.user, self.user)
         self.assertTrue(self.series_comment.active)
@@ -54,6 +67,10 @@ class CommentModelsTest(TestCase):
         self.assertTrue(self.character_comment.active)
 
     def test_ordering(self):
+        """
+        Test the ordering of comments based on their creation time.
+        Verifies that the latest comments are retrieved first.
+        """
         latest_comment_series = SeriesComment.objects.latest('created_on')
         self.assertEqual(latest_comment_series, self.series_comment)
 
@@ -65,7 +82,16 @@ class CommentModelsTest(TestCase):
 
 
 class FavoriteModelsTest(TestCase):
+    """
+    Test suite for the favorite models including FavoriteCharacter, FavoriteComic, and FavoriteSeries.
+    """
+
     def setUp(self):
+        """
+        Set up data for testing favorite models.
+        This includes creating a test user and test instances for Character, Comic, and Series,
+        along with marking them as favorites.
+        """
         self.user = User.objects.create_user(username='testuser', password='testpass')
 
         self.character = Character.objects.create(name='Spider-Man')
@@ -77,6 +103,10 @@ class FavoriteModelsTest(TestCase):
         self.favorite_series = FavoriteSeries.objects.create(user=self.user, series=self.series)
 
     def test_favorites_linked_properly(self):
+        """
+        Test that favorite instances are correctly linked to the respective user and content.
+        Verifies the correct association between user and their favorite characters, comics, and series.
+        """
         self.assertEqual(self.favorite_character.user, self.user)
         self.assertEqual(self.favorite_character.character, self.character)
 
@@ -86,12 +116,27 @@ class FavoriteModelsTest(TestCase):
         self.assertEqual(self.favorite_series.user, self.user)
         self.assertEqual(self.favorite_series.series, self.series)
 
+
 class MarvelModelsTest(TestCase):
+    """
+    Test suite for the basic Marvel models including Character, Comic, Series,
+    CharacterInComic, and CharacterInSeries.
+    """
+
     def setUp(self):
-        # Create instances of Character, Comic, and Series
-        self.character = Character.objects.create(name='Iron Man', description='A wealthy industrialist and genius inventor', image='http://image.url/ironman')
-        self.comic = Comic.objects.create(title='Iron Man #1', description='The first issue of Iron Man', image='http://image.url/ironman1')
-        self.series = Series.objects.create(title='The Iron Man Adventures', description='A series following the adventures of Iron Man', image='http://image.url/series/ironman')
+        """
+        Set up data for testing Marvel models.
+        This includes creating instances for Character, Comic, Series,
+        and their relationships (CharacterInComic and CharacterInSeries).
+        """
+        self.character = Character.objects.create(name='Iron Man',
+                                                  description='A wealthy industrialist and genius inventor',
+                                                  image='http://image.url/ironman')
+        self.comic = Comic.objects.create(title='Iron Man #1', description='The first issue of Iron Man',
+                                          image='http://image.url/ironman1')
+        self.series = Series.objects.create(title='The Iron Man Adventures',
+                                            description='A series following the adventures of Iron Man',
+                                            image='http://image.url/series/ironman')
 
         # Create instances for CharacterInComic and CharacterInSeries
         self.character_in_comic = CharacterInComic.objects.create(character=self.character, comic=self.comic)
@@ -113,7 +158,10 @@ class MarvelModelsTest(TestCase):
         self.assertEqual(str(self.character_in_series), 'Iron Man in The Iron Man Adventures')
 
     def test_nullable_fields(self):
-        # Test creating instances with null fields
+        """
+        Test the handling of nullable fields in Marvel models.
+        Verifies that the models correctly handle instances created without all fields filled in.
+        """
         character_null = Character.objects.create()
         comic_null = Comic.objects.create()
         series_null = Series.objects.create()
