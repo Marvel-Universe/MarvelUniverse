@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.http import HttpResponseRedirect
@@ -61,39 +61,36 @@ def random_question(start_pk, end_pk):
 @login_required(login_url='login')
 def character_quiz_view(request, question_pk):
     try:
-        question = get_object_or_404(CharacterQuestion, pk=question_pk)
+        question = CharacterQuestion.objects.get(pk=question_pk)
         all_choices = CharacterChoice.objects.filter(question=question)
         correct_choices = all_choices.filter(is_correct=True)
         incorrect_choices = all_choices.filter(is_correct=False)
         choices_list = sample(list(correct_choices), 1) + sample(list(incorrect_choices), 3)
         shuffle(choices_list)
     except CharacterQuestion.DoesNotExist:
-        messages.error(request, "Question not found")
         return HttpResponseRedirect(reverse('MarvelUniverse:select-quiz')) 
-    except CharacterChoice.DoesNotExist:
-        messages.error(request, "Choice not found")
-        return HttpResponseRedirect(reverse('MarvelUniverse:character-quiz', args=(question_pk,)))
 
     question_counter = request.session.get('question_counter', 0)
     scores_per_game = request.session.get('scores_per_game', 0)
 
     if request.method == 'POST':
         choice_id = request.POST.get('choice_id')
-        choice = get_object_or_404(CharacterChoice, pk=choice_id)
+        try:
+            choice = CharacterChoice.objects.get(pk=choice_id)
+        except CharacterChoice.DoesNotExist:
+            messages.error(request, 'Please choose a choice before submitting')
+            return HttpResponseRedirect(reverse('MarvelUniverse:character-quiz', args=(question_pk,)))
 
         if choice.is_correct:
             scores_per_game += 50
-            messages.success(request, 'Correct! earn +10 points.')
         else:
             scores_per_game -= 10
-            messages.success(request, 'Incorrect, -5 points try again!')
 
         question_counter += 1
         request.session['question_counter'] = question_counter
         request.session['scores_per_game'] = scores_per_game
 
         if question_counter >= 10:
-            messages.info(request, 'This is the last question!')
             request.session['question_counter'] = 0
             request.session['scores_per_game'] = scores_per_game
             return HttpResponseRedirect(reverse('MarvelUniverse:leaderboard'))
@@ -113,39 +110,36 @@ def character_quiz_view(request, question_pk):
 @login_required(login_url='login')
 def comic_quiz_view(request, question_pk):
     try:
-        question = get_object_or_404(ComicQuestion, pk=question_pk)
+        question = ComicQuestion.objects.get(pk=question_pk)
         all_choices = ComicChoice.objects.filter(question=question)
         correct_choices = all_choices.filter(is_correct=True)
         incorrect_choices = all_choices.filter(is_correct=False)
         choices_list = sample(list(correct_choices), 1) + sample(list(incorrect_choices), 3)
         shuffle(choices_list)
     except ComicQuestion.DoesNotExist:
-        messages.error(request, "Question not found")
         return HttpResponseRedirect(reverse('MarvelUniverse:select-quiz')) 
-    except ComicChoice.DoesNotExist:
-        messages.error(request, "Choice not found")
-        return HttpResponseRedirect(reverse('MarvelUniverse:comic-quiz', args=(question_pk,)))
 
     question_counter = request.session.get('question_counter', 0)
     scores_per_game = request.session.get('scores_per_game', 0)
 
     if request.method == 'POST':
         choice_id = request.POST.get('choice_id')
-        choice = get_object_or_404(ComicChoice, pk=choice_id)
+        try: 
+            choice = ComicChoice.objects.get(pk=choice_id)
+        except ComicChoice.DoesNotExist:
+            messages.error(request, 'Please choose a choice before submitting')
+            return HttpResponseRedirect(reverse('MarvelUniverse:comic-quiz', args=(question_pk,)))
 
         if choice.is_correct:
             scores_per_game += 50
-            messages.success(request, 'Correct! earn +10 points.')
         else:
             scores_per_game -= 10
-            messages.success(request, 'Incorrect, -5 points try again!')
 
         question_counter += 1
         request.session['question_counter'] = question_counter
         request.session['scores_per_game'] = scores_per_game
 
         if question_counter >= 10:
-            messages.info(request, 'This is the last question!')
             request.session['question_counter'] = 0
             request.session['scores_per_game'] = scores_per_game
             return HttpResponseRedirect(reverse('MarvelUniverse:leaderboard'))
@@ -165,38 +159,35 @@ def comic_quiz_view(request, question_pk):
 @login_required(login_url='login')
 def series_quiz_view(request, question_pk):
     try:
-        question = get_object_or_404(SeriesQuestion, pk=question_pk)
+        question = SeriesQuestion.objects.get(pk=question_pk)
         all_choices = SeriesChoice.objects.filter(question=question)
         correct_choices = all_choices.filter(is_correct=True)
         incorrect_choices = all_choices.filter(is_correct=False)
         choices_list = sample(list(correct_choices), 1) + sample(list(incorrect_choices), 3)
         shuffle(choices_list)
     except SeriesQuestion.DoesNotExist:
-        messages.error(request, "Question not found")
         return HttpResponseRedirect(reverse('MarvelUniverse:select-quiz')) 
-    except SeriesChoice.DoesNotExist:
-        messages.error(request, "Choice not found")
-        return HttpResponseRedirect(reverse('MarvelUniverse:series-quiz', args=(question_pk,)))
 
     question_counter = request.session.get('question_counter', 0)
     scores_per_game = request.session.get('scores_per_game', 0)
 
     if request.method == 'POST':
         choice_id = request.POST.get('choice_id')
-        choice = get_object_or_404(SeriesChoice, pk=choice_id)
+        try:
+            choice = SeriesChoice.objects.get(pk=choice_id)
+        except SeriesChoice.DoesNotExist:
+            messages.error(request, 'Please choose a choice before submitting')
+            return redirect('MarvelUniverse:select-quiz')
 
         if choice.is_correct:
             scores_per_game += 50
-            messages.success(request, 'Correct! earn +10 points.')
         else:
             scores_per_game -= 10
-            messages.success(request, 'Incorrect, -5 points try again!')
 
         question_counter += 1
         request.session['question_counter'] = question_counter
 
         if question_counter >= 10:
-            messages.info(request, 'This is the last question!')
             request.session['question_counter'] = 0
             request.session['scores_per_game'] = scores_per_game
             return HttpResponseRedirect(reverse('MarvelUniverse:leaderboard'))

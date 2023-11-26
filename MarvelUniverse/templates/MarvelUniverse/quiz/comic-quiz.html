@@ -23,6 +23,13 @@
                     <form action="{% url 'MarvelUniverse:comic-quiz' question.pk %}" method="post">
                         {% csrf_token %}
                         <div class="black-text question-text">Who is the character in <br> this {{question.title}} comic?</div>
+                        <div class="error-message red-text center">
+                            {% if messages %}
+                                {% for message in messages%}
+                                    <p>{{message}}</p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                         <div class="comic-series-radio-section flex-row">
                             {% for choice in choices %}
                             <div class="comic-series-radio-item flex-column">
