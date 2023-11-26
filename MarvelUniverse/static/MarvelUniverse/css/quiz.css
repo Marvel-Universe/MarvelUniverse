@@ -7,6 +7,10 @@
     color: white;
 }
 
+.red-text {
+    color: #EC1D24;
+}
+
 .black-text {
     color: black;
 }
@@ -40,141 +44,159 @@ a {
     display: flex;
 }
 
-.card-layout {
-    display: grid;
-    grid-template-columns: repeat(7, 150px);
-    gap: 12px;
-    margin-top: 1rem;
-    margin-block-end: 20px;
-}
-
-/* character */
-
-.question img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.choice p {
-    background-color: white;
-    margin-right: 10px;
-    cursor: pointer;
-    padding: 10px;
-}
-
-.choice p:hover {
-    background-color: #EC1D24;
-    color: white;
-}
-
-.character-quiz {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.question {
+.flex-column {
+    display: flex;
     flex-direction: column;
-    margin: 0 10px;
-    width: 250px;
-    height: auto;
-    padding: 20px;
-    border-radius: 10px;
-    border: solid 3px white;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
 }
 
 /* card */
 
+.poster-img {
+    width: 100%;
+}
 
-.character-img img {
+.poster-img img {
     width: 250px;
-    height: 350px;
     object-fit: cover;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
-.box {
+/* character-quiz section */
+
+.quiz-title {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 34px;
+    font-weight: bold;
+    margin-top: 30px;
+    background-color: #EC1D24;
+    width: 300px;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.quiz-section {
+    width: 70%;
+    height: 440px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    background-color: white;
+}
+
+.quiz-info {
+    width: 70%;
+    margin-top: 14px;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #FFFF;
+    font-size: 22px;
+}
+
+.quiz {
+    flex-direction: row;
+}
+
+.submit-button {
+    background-color: #EC1D24;
+    border-color: #EC1D24;
+    width: 400px;
+    height: 45px;
+    color: white;
+    font-size: 18px;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: 10px;
+    margin:  20px 0;
+    padding: 12px 10px;
+}
+
+/* form */
+
+.character-form {
     position: relative;
-    width: auto;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    margin-right: 20px;
 }
 
-.box .character-cards {
-    position: relative;
-    width: 250px;
-    height: 350px;
-    background: linear-gradient(#EC1D24, #EC1D24 30%, black 30%, black);
-    margin: 25px;
-    border-radius: 20px;
-    overflow: hidden;
+.question-text {
+    margin-top: 40px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
-.box .character-cards .character-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: 0.5s;
-    z-index: 100000;
-    border-radius: 20px;
-    transform-origin: top;
-    overflow: hidden;
-}
+/* radio button */
 
-.box .character-cards:hover .character-img:hover {
-    transform: translateY(30px) scale(0.5);
-    opacity: 0;
-}
-
-.box .character-cards .character-img img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.box .character-cards .character-detail {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding-top: 10px;
-    margin-top: -25px;
-    transform: translateY(100%);
-    transition: 0.5s;
-}
-
-.box .character-cards:hover .character-detail {
-    transform: translateY(0);
-    align-items: center;
-}
-
-.box .character-cards .character-detail .character-des {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.radio-section {
+    margin-top: 18px;
     flex-direction: column;
-    text-align: center;
 }
 
-.box .character-cards .character-detail .character-des p {
-    font-size: 1.1rem;
-    color: white;
-    padding: 0 10px;
+.radio-item input[type="radio"] {
+    display: none;
 }
 
-.box .character-cards .character-detail .character-des p {
-    font-size: 0.95rem;
-    color: white;
+.radio-item input[type="radio"] {
+    flex-direction: column;
+}
+
+.radio-item + .radio-item {
+    margin-top: 12px;
+}
+
+.radio-item label {
+    display: block;
+    padding: 12px 10px;
+    background: #FFFF;
+    border: 0.1rem solid rgb(154, 149, 149);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 400;
+    width: 100%;
+    white-space: nowrap;
+    position: relative;
+}
+
+.radio-item label:after, .radio-item label:before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.radio-item label:after {
+    height: 20px;
+    width: 20px;
+    border: 2px solid rgb(154, 149, 149);
+    left: 20px;
+    top: calc(50% - 12px);
+}
+
+.radio-item label:before {
+    background: rgb(154, 149, 149);
+    height: 10px;
+    width: 10px;
+    left: 27px;
+    top: calc(50% - 5px);
+    transform: scale(5);
+    opacity: 0;
+    visibility: hidden;
+    transition: .4s ease-in-out 0s;
+}
+
+.radio-item [type="radio"]:checked ~ label {
+    border-color: rgb(154, 149, 149);
+}
+
+.radio-item [type="radio"]:checked ~ label:before {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
 }
