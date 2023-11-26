@@ -51,7 +51,7 @@ class ComicCommentAdmin(admin.ModelAdmin):
     def approve_comments(self, request, queryset):
         queryset.update(active=True)
 
-@admin.register(UserData)
 class UserDataAdmin(admin.ModelAdmin):
-    list_display = ('user', 'profile_img_url', 'trophy_img', 'scores')
-    search_fields = ('user__username',)
+    list_display = ('user', 'profile_img_url', 'medal_img', 'scores')
+
+admin.site.register(UserData, UserDataAdmin)
