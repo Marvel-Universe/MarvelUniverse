@@ -4,7 +4,6 @@
 {% block content %}
 <html>
     <head>
-        <title>{{ username }}'s Profile</title>
         <link rel="stylesheet" href="{% static 'MarvelUniverse/css/profile.css' %}">
         <script src="{% static 'MarvelUniverse/js/avatar-selection.js' %}"></script>
 
@@ -15,14 +14,19 @@
         </script>
     </head>
     <body>
-        <div class="main">
-            <div class="empty"></div>
-            <div class="content">
-                <div class="page-title">{{ username }}'s Profile</div>
-                <p class="mail">Email: {{ email }}</p>
-                <p class="score">Scores: {{ scores }}</p>
-                <p class="date-joined">True Believers Since: {{ date_joined }}</p>
+<div class="main">
+    <div class="empty"></div>
+    <div class="content">
+        <div class="user-info">
+            <div class="page-title">
+                {{ username|title }}'s Profile
 
+                <img class="trophy" src="{{ trophy_img }}" alt="Trophy">
+            </div>
+            <p class="mail">Email: {{ email }}</p>
+            <p class="score">Scores: {{ scores }}</p>
+            <p class="date-joined">True Believers Since: {{ date_joined }}</p>
+        </div>
 
                 <!-- Selected Avatar Container -->
 <div id="selected-avatar-container">
@@ -36,47 +40,53 @@
     {% endif %}
 </div>
 
+<!-- Second Avatar Container -->
+<div id="second-avatar-container">
+
+</div>
                 <!-- Select Avatar Button -->
                 <button id="select-avatar-btn">Select Avatar</button>
 
-                <!-- Avatar Modal -->
 <!-- Avatar Modal -->
 <div id="avatar-modal" class="modal">
     <div class="modal-content">
         <span id="close-avatar-modal" class="close">&times;</span>
         <!-- Display small images for avatar choices -->
-        <div class="avatar-option" data-avatar="https://i.ibb.co/86zNtMK/iron.jpg">
-            <img src="https://i.ibb.co/86zNtMK/iron.jpg" alt="Avatar 1" class="avatar-thumbnail">
-        </div>
-        <div class="avatar-option" data-avatar="https://i.ibb.co/SyCdgfG/spiderman.png">
-            <img src="https://i.ibb.co/SyCdgfG/spiderman.png" alt="Avatar 2" class="avatar-thumbnail">
-        </div>
-        <div class="avatar-option" data-avatar="https://i.ibb.co/42C99XK/black1.jpg">
-            <img src="https://i.ibb.co/42C99XK/black1.jpg" alt="Avatar 3" class="avatar-thumbnail">
-        </div>
-                <div class="avatar-option" data-avatar="https://i.ibb.co/Ryr6M8y/captain.jpg">
-            <img src="https://i.ibb.co/Ryr6M8y/captain.jpg" alt="Avatar 4" class="avatar-thumbnail">
-        </div>
-                <div class="avatar-option" data-avatar="https://i.ibb.co/Gtg0TJ6/doctor-strange.png">
-            <img src="https://i.ibb.co/Gtg0TJ6/doctor-strange.png" alt="Avatar 5" class="avatar-thumbnail">
-        </div>
-                <div class="avatar-option" data-avatar="https://i.ibb.co/VJcSJpv/hulk.jpg">
-            <img src="https://i.ibb.co/VJcSJpv/hulk.jpg" alt="Avatar 6" class="avatar-thumbnail">
-        </div>
-                <div class="avatar-option" data-avatar="https://i.ibb.co/FxjpWLD/loki.jpg">
-            <img src="https://i.ibb.co/FxjpWLD/loki.jpg" alt="Avatar 7" class="avatar-thumbnail">
-        </div>
-                <div class="avatar-option" data-avatar="https://i.ibb.co/MPbmVQs/scarlet.jpg">
-            <img src="https://i.ibb.co/MPbmVQs/scarlet.jpg" alt="Avatar 8" class="avatar-thumbnail">
-        </div>
-                        <div class="avatar-option" data-avatar="https://i.ibb.co/j8n9VtJ/thanos.jpg">
-            <img src="https://i.ibb.co/j8n9VtJ/thanos.jpg" alt="Avatar 9" class="avatar-thumbnail">
-        </div>
-                        <div class="avatar-option" data-avatar="https://i.ibb.co/b3CGGsq/thor.jpg">
-            <img src="https://i.ibb.co/b3CGGsq/thor.jpg" alt="Avatar 10" class="avatar-thumbnail">
+        <div class="avatar-options-container">
+            <div class="avatar-option" data-avatar="https://i.ibb.co/86zNtMK/iron.jpg">
+                <img src="https://i.ibb.co/86zNtMK/iron.jpg" alt="Avatar 1" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/SyCdgfG/spiderman.png">
+                <img src="https://i.ibb.co/SyCdgfG/spiderman.png" alt="Avatar 2" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/42C99XK/black1.jpg">
+                <img src="https://i.ibb.co/42C99XK/black1.jpg" alt="Avatar 3" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/Ryr6M8y/captain.jpg">
+                <img src="https://i.ibb.co/Ryr6M8y/captain.jpg" alt="Avatar 4" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/8NxHzqY/Doctor-Strange-Profile-Picture.jpg">
+                <img src="https://i.ibb.co/8NxHzqY/Doctor-Strange-Profile-Picture.jpg" alt="Avatar 5" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/VJcSJpv/hulk.jpg">
+                <img src="https://i.ibb.co/VJcSJpv/hulk.jpg" alt="Avatar 6" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/FxjpWLD/loki.jpg">
+                <img src="https://i.ibb.co/FxjpWLD/loki.jpg" alt="Avatar 7" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/MPbmVQs/scarlet.jpg">
+                <img src="https://i.ibb.co/MPbmVQs/scarlet.jpg" alt="Avatar 8" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/j8n9VtJ/thanos.jpg">
+                <img src="https://i.ibb.co/j8n9VtJ/thanos.jpg" alt="Avatar 9" class="avatar-thumbnail">
+            </div>
+            <div class="avatar-option" data-avatar="https://i.ibb.co/b3CGGsq/thor.jpg">
+                <img src="https://i.ibb.co/b3CGGsq/thor.jpg" alt="Avatar 10" class="avatar-thumbnail">
+            </div>
         </div>
     </div>
 </div>
+
 
 
             </div>
