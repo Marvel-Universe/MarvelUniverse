@@ -247,7 +247,7 @@
                 <a href="{% url 'MarvelUniverse:profile' %}">
             {% if user.user_data.profile_img_url %}
     <div class="profile-icon">
-        <img src="{{ profile_img_url }}" alt="Profile Image">
+<img src="{{ user.user_data.profile_img_url }}" alt="Profile Image">
     </div>
 {% else %}
     <div class="profile-icon">
