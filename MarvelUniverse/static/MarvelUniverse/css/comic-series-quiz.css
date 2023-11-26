@@ -24,11 +24,16 @@
     font-size: 22px;
 }
 
+form .question-text {
+    margin-top: 60px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 /* radio button */
 
 .comic-series-radio-section {
-    margin-top: 18px;
-
+    margin-top: 5px;
 }
 
 .comic-series-radio-item {

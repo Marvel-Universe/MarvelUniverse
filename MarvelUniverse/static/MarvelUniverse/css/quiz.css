@@ -69,6 +69,10 @@ a {
 
 /* character-quiz section */
 
+.error-message {
+    margin-top: 10px;
+}
+
 .quiz-title {
     position: absolute;
     top: -4px;
@@ -115,7 +119,7 @@ a {
     font-size: 18px;
     font-family: 'Roboto Condensed', sans-serif;
     border-radius: 10px;
-    margin:  20px 0;
+    margin:  10px 0;
     padding: 12px 10px;
 }
 
