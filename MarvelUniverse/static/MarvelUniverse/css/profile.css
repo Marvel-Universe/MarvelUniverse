@@ -91,9 +91,12 @@
 .close {
     color: white;
     float: right;
-    font-size: 28px;
+    font-size: 100px;
     font-weight: bold;
     cursor: pointer;
+    position: absolute;
+    bottom: 5px;
+    right: 30px;
 }
 
 .close:hover {
