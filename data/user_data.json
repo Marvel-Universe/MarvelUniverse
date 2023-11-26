@@ -1,0 +1,52 @@
+[
+{
+  "model": "MarvelUniverse.userdata",
+  "pk": 1,
+  "fields": {
+    "user": 5,
+    "profile_img_url": "https://i.ibb.co/t8GgdVp/default-profile.png",
+    "medal_img": "https://i.ibb.co/C8D4SXz/bronze-medal.png",
+    "scores": 600
+  }
+},
+{
+  "model": "MarvelUniverse.userdata",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "profile_img_url": "https://i.ibb.co/t8GgdVp/default-profile.png",
+    "medal_img": "https://i.ibb.co/kJ173Hq/gold-medal.png",
+    "scores": 2500
+  }
+},
+{
+  "model": "MarvelUniverse.userdata",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "profile_img_url": "https://i.ibb.co/t8GgdVp/default-profile.png",
+    "medal_img": "https://i.ibb.co/pzhdfsp/silver-medal.png",
+    "scores": 1000
+  }
+},
+{
+  "model": "MarvelUniverse.userdata",
+  "pk": 4,
+  "fields": {
+    "user": 2,
+    "profile_img_url": "https://i.ibb.co/t8GgdVp/default-profile.png",
+    "medal_img": "",
+    "scores": 300
+  }
+},
+{
+  "model": "MarvelUniverse.userdata",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "profile_img_url": "https://i.ibb.co/t8GgdVp/default-profile.png",
+    "medal_img": "",
+    "scores": 0
+  }
+}
+]

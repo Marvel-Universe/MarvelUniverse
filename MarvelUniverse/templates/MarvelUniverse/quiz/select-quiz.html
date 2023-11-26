@@ -1,0 +1,39 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Quiz - Select Quiz</title>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/select-quiz.css' %}">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="quiz-content flex center">
+                <div class="quiz-title center">SELECT YOUR QUIZ !</div>
+                <div class="select-quiz">
+                    <ul>
+                        <div class="option flex">
+                            <li><a href="{% url 'MarvelUniverse:character-instruction' %}"><img src="{% static 'MarvelUniverse/img/quiz/1.png' %}"></a></li>
+                            <h2 class="white-text center">CHARACTERS</h2>
+                        </div>
+                        <div class="option">
+                            <li><a href="{% url 'MarvelUniverse:comic-instruction' %}"><img src="{% static 'MarvelUniverse/img/quiz/2.png' %}"></a></li>
+                            <h2 class="white-text center">COMICS</h2>
+                        </div>
+                        <div class="option">
+                            <li><a href="{% url 'MarvelUniverse:series-instruction' %}"><img src="{% static 'MarvelUniverse/img/quiz/3.png' %}"></a></li>
+                            <h2 class="white-text center">SERIES</h2>
+                        </div>
+                        <div class="option">
+                            <li><a href="{% url 'MarvelUniverse:random-quiz' %}"><img src="{% static 'MarvelUniverse/img/quiz/4.png' %}"></a></li>
+                            <h2 class="white-text center">RANDOM</h2>
+                        </div>
+                    </ul>
+               </div>
+            </div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
+{% endblock %}

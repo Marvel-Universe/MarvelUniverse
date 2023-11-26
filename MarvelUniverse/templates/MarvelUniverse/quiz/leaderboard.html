@@ -1,0 +1,67 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Detail - Series</title>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/leaderboard.css' %}">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="content center">
+                <section class="board flex-column center">
+                    <div class="board-title white-text">LEADERBOARD</div>
+                    <div class="info flex-column center">
+                        <div class="top3_users">
+                            <img src="https://i.ibb.co/16rp2Lr/king.png" class="crown">
+                            <h1 class="place-1st">1st</h1>
+                            <h1 class="place-2nd">2nd</h1>
+                            <h1 class="place-3rd">3rd</h1>
+                            {% for user_data in top3_users_data %}
+                                <div class="top{{forloop.counter0}}">
+                                    <img src="{{user_data.profile_img_url}}" class="profile-img">
+                                    <h3>{{user_data.user.username.title}}</h3>
+                                    <div class="flex-row medals center">
+                                        <img src="{{user_data.medal_img}}">
+                                        <h2>{{user_data.scores}}</h2>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <table class="content-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Users</th>
+                                    <th>Medal</th>
+                                    <th>Scores</th>
+                                </tr>    
+                            </thead>
+                            <tbody>
+                                {% for user_data in other_users_data %}
+                                    <tr>
+                                        <th>{{ forloop.counter0|add:4 }}</th> 
+                                        <th class="users flex-row">
+                                            <img src="{{user_data.profile_img_url}}">
+                                            {{ user_data.user.username }}
+                                        </th>
+                                        {% if user_data.medal_img %}
+                                            <th><img src="{{user_data.medal_img}}"></th>
+                                        {% else %}
+                                            <th>-</th>
+                                        {% endif %}
+                                        <th>{{ user_data.scores }}</th>
+                                    </tr>
+                                {% endfor %}    
+                            </tbody>
+                        </table>    
+                        <a href="{% url 'MarvelUniverse:select-quiz' %}" class="btn">Play !</a>
+                    </div>
+                </section>                        
+            </div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
+{% endblock %}

@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$390000$f7gX63UkuPjbvlCNv4RE9M$gxS2vzHbtW0For7PD8fdU8KC9p6slz2PzWR3zKgfYtM=",
-    "last_login": null,
+    "last_login": "2023-11-26T08:05:20.817Z",
     "is_superuser": true,
     "username": "Admin",
     "first_name": "",
@@ -13,6 +13,78 @@
     "is_staff": true,
     "is_active": true,
     "date_joined": "2023-10-22T15:41:05.444Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$AVsKqiVQ9vS97CgrfxsDMW$Rth519ug4NjHyho0PdcsKC+WJEayEUpfMOja5AOxvj0=",
+    "last_login": "2023-10-26T18:59:58.236Z",
+    "is_superuser": false,
+    "username": "sanny",
+    "first_name": "navathon",
+    "last_name": "limamapar",
+    "email": "san@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-23T17:27:35.264Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "!ox4Dh3xy1BwF0KNG64XNiClyC3trEcN2ti7fd7Ia",
+    "last_login": "2023-10-26T19:21:22.004Z",
+    "is_superuser": false,
+    "username": "navathon",
+    "first_name": "Navathon",
+    "last_name": "LIMAMAPAR",
+    "email": "navathon.l@ku.th",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-26T19:06:04.422Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "!OxvykQJhz8ruvYKVEJZQpe3Ju7QIKydDF9x2kvMR",
+    "last_login": "2023-10-27T13:11:06.005Z",
+    "is_superuser": false,
+    "username": "san",
+    "first_name": "San",
+    "last_name": "krub",
+    "email": "shannavathon@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-26T19:21:44.836Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "!IkuqqYl6KNSF4MfcWdKuuhCRKfoxNtv4xxCPjzJ6",
+    "last_login": "2023-11-26T08:04:25.224Z",
+    "is_superuser": false,
+    "username": "jiratchaya",
+    "first_name": "Jiratchaya",
+    "last_name": "THONGSUTHUM",
+    "email": "jiratchaya.thongs@ku.th",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-11-26T08:04:25.153Z",
     "groups": [],
     "user_permissions": []
   }
