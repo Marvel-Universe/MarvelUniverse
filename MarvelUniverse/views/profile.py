@@ -1,9 +1,10 @@
-from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.http import JsonResponse
 from django.views import View
-from django.contrib.auth.decorators import login_required
-from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 from MarvelUniverse.models import UserData
 
@@ -51,3 +52,17 @@ class ProfileView(View):
         }
 
         return render(request, self.template_name, context=context)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class UpdateProfileImageView(View):
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        avatar_url = data.get('avatarUrl', '')
+
+        # Update the user's profile image
+        user_data = UserData.objects.get(user=request.user)
+        user_data.profile_img_url = avatar_url
+        user_data.save()
+
+        return JsonResponse({'success': True})
