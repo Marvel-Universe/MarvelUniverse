@@ -18,6 +18,9 @@ class AllCharactersView(View):
 
 class CharacterSearchView(View):
     def get(self, request):
+        """
+        Get the name of character search from user then find the match name and display for user.
+        """
         search_query = request.GET.get("search", "")
         characters = Character.objects.filter(name__icontains=search_query).values('name', 'image', 'id')
         return JsonResponse(list(characters), safe=False)
@@ -36,6 +39,9 @@ class AllComicsView(View):
 
 
 class ComicSearchView(View):
+    """
+    Get the title of comic search from user then find the match name and display for user.
+    """
     def get(self, request):
         search_query = request.GET.get("search", "")
         comic = Comic.objects.filter(title__icontains=search_query).values('title', 'image', 'id')
@@ -55,6 +61,9 @@ class AllSeriesView(View):
 
 
 class SeriesSearchView(View):
+    """
+    Get the title name of series search from user then find the match name and display for user.
+    """
     def get(self, request):
         search_query = request.GET.get("search", "")
         series = Series.objects.filter(title__icontains=search_query).values("title", "image", "id")
