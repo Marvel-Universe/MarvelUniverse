@@ -63,7 +63,7 @@
                 dataType: 'json',
                 success: function(data) {
                     var html = '';
-                    $.each(data, function(index, character) {
+                    $.each(data.characters, function(index, character) {
                         var detailUrl = "{% url 'MarvelUniverse:characters-detail' 0 %}".replace('0', character.id);
                         html += '<li class="card">';
                         html += '<a href="' + detailUrl + '">';
@@ -72,6 +72,7 @@
                         html += '</div></a></li>';
                     });
                     $('.card-layout').html(html);
+                    $('.count').text(data.count + ' Results'); // Update count real time
                 }
             });
         }
