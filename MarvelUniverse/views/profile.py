@@ -20,11 +20,9 @@ class ProfileView(View):
         formatted_date_joined = naturaltime(this_user.date_joined)
 
         context = {
-            'username': this_user.username,
-            'email': this_user.email,  # Added email to the context
+            'user': this_user,
+            'user_data': user_data, 
             'profile_img_url': user_data.profile_img_url,
-            'medal_img': user_data.medal_img,
-            'scores': user_data.scores,
             'date_joined': formatted_date_joined,
         }
 
