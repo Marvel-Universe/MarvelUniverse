@@ -1,14 +1,12 @@
-import os
 from django.test import TestCase, Client
 from django.urls import reverse
 from ..models import Character, Comic, Series
-from django.core.management import call_command
-
+import json
 
 class AllViewsTest(TestCase):
     """
-    Test suite for the views displaying all characters, comics, and series.
-    Includes tests for both default views and filtered search functionality.
+    Test suite for views displaying all characters, comics, and series,
+    and their corresponding search views.
     """
 
     def setUp(self):
@@ -16,53 +14,61 @@ class AllViewsTest(TestCase):
         Set up data for testing views.
         This includes creating test instances for Character, Comic, and Series.
         """
-        call_command('loaddata', os.getcwd() + '/data/google-oauth-data.json', '--exclude=contenttypes')
         self.client = Client()
-        Character.objects.create(name='Spider-Man')
-        Comic.objects.create(title='Amazing Spider-Man #1')
-        Series.objects.create(title='The Spider-Man Chronicles')
-        self.character_all_url = reverse('MarvelUniverse:characters')
-        self.comic_all_url = reverse('MarvelUniverse:comics')
-        self.series_all_url = reverse('MarvelUniverse:series')
+        Character.objects.create(name='Spider-Man', image='spiderman_image_url')
+        Comic.objects.create(title='Amazing Spider-Man #1', image='spiderman_comic_image_url')
+        Series.objects.create(title='The Spider-Man Chronicles', image='spiderman_series_image_url')
 
     def test_all_characters_view(self):
         """
-        Test the AllCharactersView with and without a search query.
-        Verifies correct retrieval and filtering of character data.
+        Test the AllCharactersView for correct rendering and context data.
         """
-        response = self.client.get(self.character_all_url)
+        response = self.client.get(reverse('MarvelUniverse:characters'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['characters']), Character.objects.count())
 
-        response = self.client.get(self.character_all_url, {'get_search': 'Spider'})
+    def test_character_search_view(self):
+        """
+        Test the CharacterSearchView for correct JSON response and search functionality.
+        """
+        response = self.client.get(reverse('MarvelUniverse:character_search'), {'search': 'Spider'})
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context['characters']), 1)
-        self.assertEqual(response.context['get_search'], 'Spider')
+        data = json.loads(response.content)
+        self.assertEqual(data['count'], 1)
+        self.assertEqual(data['characters'][0]['name'], 'Spider-Man')
 
     def test_all_comics_view(self):
         """
-        Test the AllComicsView with and without a search query.
-        Verifies correct retrieval and filtering of comic data.
+        Test the AllComicsView for correct rendering and context data.
         """
-        response = self.client.get(self.comic_all_url)
+        response = self.client.get(reverse('MarvelUniverse:comics'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['comics']), Comic.objects.count())
 
-        response = self.client.get(self.comic_all_url, {'get_search': 'Spider'})
+    def test_comic_search_view(self):
+        """
+        Test the ComicSearchView for correct JSON response and search functionality.
+        """
+        response = self.client.get(reverse('MarvelUniverse:comic_search'), {'search': 'Spider'})
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context['comics']), 1)
-        self.assertEqual(response.context['get_search'], 'Spider')
+        data = json.loads(response.content)
+        self.assertEqual(data['count'], 1)
+        self.assertEqual(data['comics'][0]['title'], 'Amazing Spider-Man #1')
 
     def test_all_series_view(self):
         """
-        Test the AllSeriesView with and without a search query.
-        Verifies correct retrieval and filtering of series data.
+        Test the AllSeriesView for correct rendering and context data.
         """
-        response = self.client.get(self.series_all_url)
+        response = self.client.get(reverse('MarvelUniverse:series'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['series']), Series.objects.count())
 
-        response = self.client.get(self.series_all_url, {'get_search': 'Spider'})
+    def test_series_search_view(self):
+        """
+        Test the SeriesSearchView for correct JSON response and search functionality.
+        """
+        response = self.client.get(reverse('MarvelUniverse:series_search'), {'search': 'Spider'})
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context['series']), 1)
-        self.assertEqual(response.context['get_search'], 'Spider')
+        data = json.loads(response.content)
+        self.assertEqual(data['count'], 1)
+        self.assertEqual(data['series'][0]['title'], 'The Spider-Man Chronicles')
