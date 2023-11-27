@@ -6,14 +6,17 @@ from .views.detail import character_detail_view, comic_detail_view, series_detai
 from .views.favorites import toggle_favorite
 from .views.favorites import FavoriteView
 from .views.quiz import SelectQuizView, CharacterInstructionView, ComicInstructionView, SeriesInstructionView, random_quiz, character_quiz_view, comic_quiz_view, series_quiz_view, leaderboard
-
+from .views.see_all import CharacterSearchView, ComicSearchView, SeriesSearchView
 
 app_name = "MarvelUniverse"
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('characters/', AllCharactersView.as_view(), name="characters"),
+    path('characters/search/', CharacterSearchView.as_view(), name='character_search'),
     path('comics/', AllComicsView.as_view(), name="comics"),
+    path('comics/search', ComicSearchView.as_view(), name="comic_search"),
     path('series/', AllSeriesView.as_view(), name="series"),
+    path('series/search', SeriesSearchView.as_view(), name="series_search"),
     path('<str:model>/<int:object_id>/toggle_favorite/', toggle_favorite, name='toggle_favorite'),
     path('favorites/', FavoriteView.as_view(), name='favorites'),
     path('characters/<int:character_pk>', character_detail_view, name="characters-detail"),
