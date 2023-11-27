@@ -22,8 +22,12 @@ class CharacterSearchView(View):
         Get the name of character search from user then find the match name and display for user.
         """
         search_query = request.GET.get("search", "")
-        characters = Character.objects.filter(name__icontains=search_query).values('name', 'image', 'id')
-        return JsonResponse(list(characters), safe=False)
+        characters = Character.objects.filter(name__icontains=search_query)
+        data = {
+            'characters': list(characters.values('name', 'image', 'id')),
+            'count': characters.count()
+        }
+        return JsonResponse(data)
 
 
 class AllComicsView(View):
@@ -44,8 +48,12 @@ class ComicSearchView(View):
     """
     def get(self, request):
         search_query = request.GET.get("search", "")
-        comic = Comic.objects.filter(title__icontains=search_query).values('title', 'image', 'id')
-        return JsonResponse(list(comic), safe=False)
+        comics = Comic.objects.filter(title__icontains=search_query)
+        data = {
+            "comics": list(comics.values('title', 'image', 'id')),
+            "count": comics.count()
+        }
+        return JsonResponse(data)
 
 
 class AllSeriesView(View):
@@ -66,5 +74,9 @@ class SeriesSearchView(View):
     """
     def get(self, request):
         search_query = request.GET.get("search", "")
-        series = Series.objects.filter(title__icontains=search_query).values("title", "image", "id")
-        return JsonResponse(list(series), safe=False)
+        series = Series.objects.filter(title__icontains=search_query)
+        data = {
+            "series": list(series.values('title', 'image', 'id')),
+            "count": series.count()
+        }
+        return JsonResponse(data)
