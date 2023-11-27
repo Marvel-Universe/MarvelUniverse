@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
+
+from MarvelUniverse.views.handle import handle_invalid_url
 from . import views
 from django.views.generic import TemplateView
+
 
 urlpatterns = [
     path('', RedirectView.as_view(url='marvel-universe/')),
@@ -40,4 +43,6 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name="registration/password_reset_complete.html"),
          name='password_reset_complete'),
     path('accounts/', include('allauth.urls')),
+    path('invalid-url/<str:path>', handle_invalid_url, name='invalid-url'),
+
 ]
