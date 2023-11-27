@@ -1,0 +1,88 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Series - Quiz Instructions</title>
+        <link rel="stylesheet" href="{% static 'MarvelUniverse/css/instruction.css' %}">
+    </head>
+    <body>
+        <div class="main">
+            <div class="empty"></div>
+            <div class="content">
+                <section class="lets-quiz">
+                    <div class="start-quiz flex">
+                        <div class="start title white-text flex"> SERIES QUIZ </div>
+                        <div class="blog-card">
+                        <div class="intro-quiz">
+                            <p class="description black-text flex">Immerse yourself in the Marvel Universe with
+                                our thrilling quiz game! Dive into the world of epic series. Challenge your knowledge,
+                                relive memorable series moments. Whether you're a Marvel novice or a super fan, this
+                                game is your ticket to an exciting journey through the Marvel cosmos. Test your
+                                expertise, earn achievements, and compete for the title of the ultimate
+                                " True Believer. " <br><br>
+                                Are you ready for the ultimate Marvel Quiz experience?
+                            </p>
+                        </div>
+                        <div class="deadpool-quiz">
+                            <div class="deadpool-circle"></div>
+                            <img src="{% static 'MarvelUniverse/img/quiz-guide-icon/lets-quiz.png' %}" alt="Deadpool">
+                        </div>
+                        </div>
+                        <div class="button-container">
+                            <a href="{% url 'MarvelUniverse:select-quiz' %}" class="btn"><< BACK </a>
+                            <a href="{% url 'MarvelUniverse:series-quiz' random_pk %}" class="btn">START QUIZ !</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="instructions">
+                    <div class="instructions-info flex">
+                        <p class="info white-text flex"> HOW TO PLAY </p>
+                        <div class="quiz-container">
+                            <div class="info-card">
+                                <div class="info-circle" style="--clr:white">
+                                    <img src="{% static 'MarvelUniverse/img/quiz-guide-icon/quiz.png' %}" class="icon" alt="Press Start">
+                                </div>
+                                <div class="info-steps">
+                                    <h2>1. Start The Quiz</h2>
+                                    <p>Begin the quiz by clicking the "START QUIZ !" button.</p>
+                                </div>
+                                <img src="{% static 'MarvelUniverse/img/quiz-guide-icon/spider-man-quiz.png' %}" class="char" alt="Spider Man">
+                            </div>
+                            <div class="info-card">
+                                <div class="info-circle" style="--clr:white">
+                                    <img src="{% static 'MarvelUniverse/img/quiz-guide-icon/medal.png' %}" class="icon" alt="Press Start">
+                                </div>
+                                <div class="info-steps">
+                                    <h2>2. Score Points</h2>
+                                    <p>
+                                        Earn points by :<br>
+                                        * Correct answer +50 points<br>
+                                        * Incorrect answer -10 points<br><br>
+                                        Achieve these milestones :<br>
+                                        * 500 points : Bronze medal<br>
+                                        * 1000 points : Silver medal<br>
+                                        * 2500 points : Gold medal
+                                    </p>
+                                </div>
+                                <img src="{% static 'MarvelUniverse/img/quiz-guide-icon/silver-surfer-quiz.png' %}" class="char" alt="Silver Surfer">
+                            </div>
+                            <div class="info-card">
+                                <div class="info-circle" style="--clr:white">
+                                    <img src="{% static 'MarvelUniverse/img/quiz-guide-icon/rank.png' %}" class="icon" alt="Press Start">
+                                </div>
+                                <div class="info-steps">
+                                    <h2>3. Ranking</h2>
+                                    <p>Check your ranking and see how you compare to other players.</p>
+                                </div>
+                                <img src="{% static 'MarvelUniverse/img/quiz-guide-icon/loki-quiz.png' %}" class="char" alt="Loki">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="empty"></div>
+        </div>
+    </body>
+</html>
+{% endblock %}
