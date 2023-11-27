@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const updateSecondAvatar = function (avatarUrl) {
         // Update second avatar container based on the selected avatar
+
     };
 
     document.getElementById('select-avatar-btn').addEventListener('click', function () {
