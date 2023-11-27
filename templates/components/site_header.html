@@ -266,7 +266,9 @@
                       {% endif %}
                   </div>
                   <p class="username">{{ user.username|title }}</p>
-                  <img class="trophy" src="{{ user.user_data.get_trophy_img }}">
+                  {% if user.user_data.get_trophy_img %}
+                    <img class="trophy" src="{{ user.user_data.get_trophy_img }}">
+                  {% endif %}
               {% else %}
                   <a href="{% url 'MarvelUniverse:profile' %}" class="flex-row">
                       <div class="profile-icon">  
@@ -277,7 +279,9 @@
                           {% endif %}
                       </div>
                       <p class="username">{{ user.username|title }}</p>
-                      <img class="trophy" src="{{ user.user_data.get_trophy_img }}">
+                      {% if user.user_data.get_trophy_img %}
+                        <img class="trophy" src="{{ user.user_data.get_trophy_img }}">
+                      {% endif %}
                   </a>
               {% endif %}
           </div>
