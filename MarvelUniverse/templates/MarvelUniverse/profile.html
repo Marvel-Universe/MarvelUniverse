@@ -21,14 +21,14 @@
             <div class="page-title">
                 {{ username|title }}'s Profile
 
-{% if scores > 500 %}
-    <img class="trophy" src="{% if scores < 1000 %}https://i.ibb.co/C8D4SXz/bronze-medal.png{% elif scores < 2500 %}https://i.ibb.co/pzhdfsp/sliver-medal.png{% else %}https://i.ibb.co/kJ173Hq/gold-medal.png{% endif %}">
-{% endif %}
+            <img class="trophy" src="{{medal_img}}">
             </div>
             <p class="mail">Email: {{ email }}</p>
             <p class="score">Scores: {{ scores }}</p>
             <p class="date-joined">True Believers Since: {{ date_joined }}</p>
+
         </div>
+
 
                 <!-- Selected Avatar Container -->
 <div id="selected-avatar-container">
