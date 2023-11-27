@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views import View
 from ..models import Character, Comic, Series
-from django.contrib import messages
 
 
 class AllCharactersView(View):
@@ -14,7 +13,7 @@ class AllCharactersView(View):
             characters = Character.objects.filter(name__icontains=get_search)[:]
         else:
             characters = Character.objects.all()
-        
+
         context = {
             'characters': characters,
             'character_count': characters.count(),
@@ -40,7 +39,7 @@ class AllComicsView(View):
             'get_search': search_value
         }
         return render(request, self.template_name, context)
-    
+
 
 class AllSeriesView(View):
     template_name = 'MarvelUniverse/see_all/all_series.html'
@@ -59,4 +58,3 @@ class AllSeriesView(View):
             'get_search': search_value
         }
         return render(request, self.template_name, context)
-    
