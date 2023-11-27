@@ -87,5 +87,5 @@ class ComicCommentAdmin(admin.ModelAdmin):
 
 @admin.register(UserData)
 class UserDataAdmin(admin.ModelAdmin):
-    list_display = ('user', 'profile_img_url', 'trophy_img', 'scores')
+    list_display = ('user', 'profile_img_url', 'medal_img', 'scores')
     search_fields = ('user__username',)
