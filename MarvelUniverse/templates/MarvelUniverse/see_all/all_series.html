@@ -43,7 +43,8 @@
             </div>
             <div class="empty"></div>
         </div>
-    <script>
+
+<script>
     $(document).ready(function() {
         // Intercept form submission
         $('.search-by-name-box').on('submit', function(e) {
@@ -60,7 +61,7 @@
                 dataType: 'json',
                 success: function(data) {
                     var html = '';
-                    $.each(data, function(index, series) {
+                    $.each(data.series, function(index, series) {
                         var detailUrl = "{% url 'MarvelUniverse:series-detail' 0 %}".replace('0', series.id);
                         html += '<li class="card">';
                         html += '<a href="' + detailUrl + '">';
@@ -69,9 +70,12 @@
                         html += '</div></a></li>';
                     });
                     $('.card-layout').html(html);
+                    $('.count').text(data.count + ' Results'); // Correctly update the count
                 }
             });
         }
+
+
 
         // Event handler for keyup in the search box
         $('#searchBox').on('keyup', function(e) {
