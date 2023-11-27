@@ -60,7 +60,7 @@
                 dataType: 'json',
                 success: function(data) {
                     var html = '';
-                    $.each(data, function(index, comic) {
+                    $.each(data.comics, function(index, comic) {
                         var detailUrl = "{% url 'MarvelUniverse:comics-detail' 0 %}".replace('0', comic.id);
                         html += '<li class="card">';
                         html += '<a href="' + detailUrl + '">';
@@ -69,6 +69,7 @@
                         html += '</div></a></li>';
                     });
                     $('.card-layout').html(html);
+                    $('.count').text(data.count + ' Results'); // Update the count dynamically
                 }
             });
         }
