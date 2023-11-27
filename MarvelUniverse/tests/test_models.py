@@ -5,6 +5,7 @@ from ..models.comment_models import SeriesComment, ComicComment, CharacterCommen
 from ..models.favorites import FavoriteCharacter, FavoriteComic, FavoriteSeries
 from django.test import TestCase
 from django.contrib.auth.models import User
+from ..models.user_data_models import UserData
 from django.utils import timezone
 from django.core.management import call_command
 
@@ -175,3 +176,56 @@ class MarvelModelsTest(TestCase):
         self.assertIsNone(character_in_comic_null.comic)
         self.assertIsNone(character_in_series_null.character)
         self.assertIsNone(character_in_series_null.series)
+
+
+class UserDataModelTest(TestCase):
+
+    def setUp(self):
+        # Create a user
+        self.user = User.objects.create_user(username='testuser', password='12345')
+
+        # Create a UserData instance
+        self.user_data = UserData.objects.create(
+            user=self.user,
+            profile_img_url='http://example.com/profile.jpg',
+            scores=0
+        )
+
+    def test_user_data_str(self):
+        """
+        Test the string representation of the UserData model.
+        Verifies that it returns the username of the associated user.
+        """
+        self.assertEqual(str(self.user_data), 'testuser')
+
+    def test_trophy_img_display(self):
+        """
+        Test the trophy_img_display property of the UserData model.
+        Verifies that it returns the correct URL for the trophy image.
+        """
+        self.assertEqual(self.user_data.get_trophy_img, self.user_data.medal_img)
+
+    def test_ranking_scores(self):
+        """
+        Test the ranking_scores method of the UserData model.
+        Verifies that it assigns the correct trophy image based on the user's scores.
+        """
+        # Test for bronze medal
+        self.user_data.scores = 500
+        self.user_data.save()
+        self.assertEqual(self.user_data.medal_img, "https://i.ibb.co/C8D4SXz/bronze-medal.png")
+
+        # Test for silver medal
+        self.user_data.scores = 1000
+        self.user_data.save()
+        self.assertEqual(self.user_data.medal_img, "https://i.ibb.co/pzhdfsp/silver-medal.png")
+
+        # Test for gold medal
+        self.user_data.scores = 2500
+        self.user_data.save()
+        self.assertEqual(self.user_data.medal_img, "https://i.ibb.co/kJ173Hq/gold-medal.png")
+
+        # Test for no medal
+        self.user_data.scores = 0
+        self.user_data.save()
+        self.assertEqual(self.user_data.medal_img, "")
