@@ -5,7 +5,14 @@ from django.http import HttpResponseRedirect
 
 
 def signup(request):
-    """Register a new user."""
+    """
+    View for user registration.
+
+    Handles both GET and POST requests:
+    - GET: Display the registration form.
+    - POST: Process the form submission for user registration.
+
+    """
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
