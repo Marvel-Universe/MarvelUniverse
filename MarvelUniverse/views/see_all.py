@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from ..models import Character, Comic, Series
-from django.contrib import messages
+from django.http import JsonResponse
 
 
 class AllCharactersView(View):
@@ -12,19 +12,26 @@ class AllCharactersView(View):
         Display all characters or filter characters based on the search query.
 
         """
-        search_value = request.GET.get("get_search", "")
-        if search_value:
-            get_search = request.GET["get_search"]
-            characters = Character.objects.filter(name__icontains=get_search)[:]
-        else:
-            characters = Character.objects.all()
-        
+        characters = Character.objects.all()
         context = {
             'characters': characters,
             'character_count': characters.count(),
-            'get_search': search_value
         }
         return render(request, self.template_name, context)
+
+
+class CharacterSearchView(View):
+    def get(self, request):
+        """
+        Get the name of character search from user then find the match name and display for user.
+        """
+        search_query = request.GET.get("search", "")
+        characters = Character.objects.filter(name__icontains=search_query)
+        data = {
+            'characters': list(characters.values('name', 'image', 'id')),
+            'count': characters.count()
+        }
+        return JsonResponse(data)
 
 
 class AllComicsView(View):
@@ -35,20 +42,27 @@ class AllComicsView(View):
         Display all comics or filter comics based on the search query.
 
         """
-        search_value = request.GET.get("get_search", "")
-        if search_value:
-            get_search = request.GET["get_search"]
-            comics = Comic.objects.filter(title__icontains=get_search)[:]
-        else:
-            comics = Comic.objects.all()
-
+        comics = Comic.objects.all()
         context = {
             'comics': comics,
             'comics_count': comics.count(),
-            'get_search': search_value
         }
         return render(request, self.template_name, context)
-    
+
+
+class ComicSearchView(View):
+    """
+    Get the title of comic search from user then find the match name and display for user.
+    """
+    def get(self, request):
+        search_query = request.GET.get("search", "")
+        comics = Comic.objects.filter(title__icontains=search_query)
+        data = {
+            "comics": list(comics.values('title', 'image', 'id')),
+            "count": comics.count()
+        }
+        return JsonResponse(data)
+
 
 class AllSeriesView(View):
     template_name = 'MarvelUniverse/see_all/all_series.html'
@@ -58,17 +72,23 @@ class AllSeriesView(View):
         Display all series or filter series based on the search query.
 
         """
-        search_value = request.GET.get("get_search", "")
-        if search_value:
-            get_search = request.GET["get_search"]
-            series = Series.objects.filter(title__icontains=get_search)[:]
-        else:
-            series = Series.objects.all()
-
+        series = Series.objects.all()
         context = {
             'series': series,
             'series_count': series.count(),
-            'get_search': search_value
         }
         return render(request, self.template_name, context)
-    
+
+
+class SeriesSearchView(View):
+    """
+    Get the title name of series search from user then find the match name and display for user.
+    """
+    def get(self, request):
+        search_query = request.GET.get("search", "")
+        series = Series.objects.filter(title__icontains=search_query)
+        data = {
+            "series": list(series.values('title', 'image', 'id')),
+            "count": series.count()
+        }
+        return JsonResponse(data)

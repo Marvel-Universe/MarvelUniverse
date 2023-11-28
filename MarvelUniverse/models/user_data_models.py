@@ -1,4 +1,3 @@
-# models.py
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -16,7 +15,7 @@ class UserData(models.Model):
         return self.medal_img
 
     def save(self, *args, **kwargs):
-        self.medal_img = self.ranking_scores()
+        self.medal_img = self.ranking_scores() 
         super().save(*args, **kwargs)
 
     def ranking_scores(self):
