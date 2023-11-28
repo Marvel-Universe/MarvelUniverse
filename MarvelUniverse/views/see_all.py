@@ -8,6 +8,10 @@ class AllCharactersView(View):
     template_name = 'MarvelUniverse/see_all/all_characters.html'
 
     def get(self, request):
+        """
+        Display all characters or filter characters based on the search query.
+
+        """
         characters = Character.objects.all()
         context = {
             'characters': characters,
@@ -34,6 +38,10 @@ class AllComicsView(View):
     template_name = 'MarvelUniverse/see_all/all_comics.html'
 
     def get(self, request):
+        """
+        Display all comics or filter comics based on the search query.
+
+        """
         comics = Comic.objects.all()
         context = {
             'comics': comics,
@@ -60,6 +68,10 @@ class AllSeriesView(View):
     template_name = 'MarvelUniverse/see_all/all_series.html'
 
     def get(self, request):
+        """
+        Display all series or filter series based on the search query.
+
+        """
         series = Series.objects.all()
         context = {
             'series': series,

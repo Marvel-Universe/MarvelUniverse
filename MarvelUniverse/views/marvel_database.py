@@ -4,12 +4,26 @@ import os
 
 
 def access_json_file(path):
+    """
+    Access a JSON file using its path.
+
+    Parameters:
+    - path (str): The relative path of the JSON file.
+
+    Returns:
+    - str: The absolute path of the JSON file.
+
+    """
     module = os.path.dirname(__file__)
     file = os.path.join(module, path)
     return file
 
 
 def create_characters():
+    """
+    Create Character objects from the data in the Marvel data JSON file.
+
+    """
     with open(access_json_file("marvel_data\marvel_characters.json"), 'r') as characters_file:
         characters = json.load(characters_file)
     for character in characters:
@@ -21,6 +35,10 @@ def create_characters():
 
 
 def create_comics():
+    """
+    Create Comic and CharacterInComic objects from the data in the Marvel data JSON file.
+
+    """
     with open(access_json_file("marvel_data\marvel_comics.json"), 'r') as comics_file:
         comics_data = json.load(comics_file)
     for comic in comics_data:
@@ -40,6 +58,10 @@ def create_comics():
 
 
 def create_series():
+    """
+    Create Series and CharacterInSeries objects from the data in the Marvel data JSON file.
+
+    """
     with open(access_json_file("marvel_data\marvel_series.json"), 'r') as series_file:
         series_data = json.load(series_file)
     for series in series_data:
