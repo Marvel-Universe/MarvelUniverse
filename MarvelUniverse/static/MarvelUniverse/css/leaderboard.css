@@ -233,6 +233,7 @@ table img {
 
 .users img {
     margin-right: 10px;
+    border-radius: 100%;
 }
 
 /* button */
