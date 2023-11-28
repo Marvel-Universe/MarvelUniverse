@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.http import HttpResponseRedirect
@@ -202,7 +202,6 @@ def series_quiz_view(request, question_pk):
     return render(request, 'MarvelUniverse/quiz/series-quiz.html', context)
 
 
-@login_required(login_url='login')
 def leaderboard(request):
     this_user = request.user
     this_user_data, created = UserData.objects.get_or_create(user=this_user)

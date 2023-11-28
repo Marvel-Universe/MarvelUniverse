@@ -238,6 +238,8 @@
             <li class="menu-text"><a href="{% url 'MarvelUniverse:characters' %}">Characters</a></li>
             <li class="menu-text"><a href="{% url 'MarvelUniverse:comics' %}">Comics</a></li>
             <li class="menu-text"><a href="{% url 'MarvelUniverse:series' %}">Series</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:select-quiz' %}">Quiz</a></li>
+            <li class="menu-text"><a href="{% url 'MarvelUniverse:leaderboard' %}">Leaderboard</a></li>
           </ul>
         </div>
       </div>
@@ -292,8 +294,6 @@
                   </a>
                   <div class="dropdown-content">
                       <a href="{% url 'MarvelUniverse:about' %}">About</a>
-                      <a href="#">Review</a>
-                      <a href="#">Quiz</a>
                       {% if user.is_authenticated %}
                         <a href="{% url 'logout' %}">Log out</a>
                       {% endif %}

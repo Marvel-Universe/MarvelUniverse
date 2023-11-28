@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ['*']
 SITE_ID = 2
 
 INSTALLED_APPS = [
-    'MarvelUniverse.apps.MarveluniverseConfig',
+    'MarvelUniverse',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django.contrib.admin',
 ]
+
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

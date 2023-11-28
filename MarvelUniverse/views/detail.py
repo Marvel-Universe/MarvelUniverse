@@ -23,8 +23,7 @@ def character_detail_view(request, character_pk):
     try:
         character = Character.objects.get(pk=character_pk)
     except Character.DoesNotExist:
-        messages.error(f"Character {character_pk} not found")
-        return HttpResponseRedirect(reverse('MarvelUniverse:all-characters'))
+        return HttpResponseRedirect(reverse('MarvelUniverse:characters'))
     else:
         characters_comics = CharacterInComic.objects.filter(character=character)
         characters_series = CharacterInSeries.objects.filter(character=character)
@@ -62,7 +61,6 @@ def character_detail_view(request, character_pk):
     return render(request, 'MarvelUniverse/detail/characters.html', context)
 
 
-# @login_required(login_url='login')
 def comic_detail_view(request, comic_pk):
     """
      View to display details about a comic, including associated characters, user comments, and favorite status.
@@ -78,8 +76,7 @@ def comic_detail_view(request, comic_pk):
     try:
         comic = Comic.objects.get(pk=comic_pk)
     except Comic.DoesNotExist:
-        messages.error(f"Comic {comic_pk} not found")
-        return HttpResponseRedirect(reverse('MarvelUniverse:all-comics'))
+        return HttpResponseRedirect(reverse('MarvelUniverse:comics'))
     else:
         characters_series = CharacterInComic.objects.filter(comic=comic)
         characters_list = [character_series.character for character_series in characters_series]
@@ -113,7 +110,6 @@ def comic_detail_view(request, comic_pk):
     return render(request, 'MarvelUniverse/detail/comics.html', context)
 
 
-# @login_required(login_url='login')
 def series_detail_view(request, series_pk):
     """
     View to display details about a series, including associated characters, user comments, and favorite status.
@@ -129,8 +125,7 @@ def series_detail_view(request, series_pk):
     try:
         series = Series.objects.get(pk=series_pk)
     except Series.DoesNotExist:
-        messages.error(f"Series {series_pk} not found")
-        return HttpResponseRedirect(reverse('MarvelUniverse:all-series'))
+        return HttpResponseRedirect(reverse('MarvelUniverse:series'))
     else:
         characters_series = CharacterInSeries.objects.filter(series=series)
         characters_list = [character_series.character for character_series in characters_series]

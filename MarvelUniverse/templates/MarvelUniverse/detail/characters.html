@@ -1,5 +1,9 @@
 {% extends 'components/base.html' %}
 {% load static %}
+{% load custom_filters %}
+
+{% load custom_filters %}
+
 {% block content %}
 <html>
     <head>
@@ -16,7 +20,7 @@
                     </div>
                     <div class="detail flex">
                         <p class="name title">{{character.name}}</p>
-                        <p class="description">{{character.description}}</p>
+                        <p class="description">{{ character.description|striptags|filter_description }}</p>
                         <div class="comment-section">
                             <div class="comment-title flex">
                                 <button class="fav {% if is_favorite %}is-favorite{% endif %}" id="favoriteButton" data-model="character" data-object-id="{{character.pk}}">

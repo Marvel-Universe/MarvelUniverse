@@ -1,5 +1,6 @@
 {% extends 'components/base.html' %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
 <html>
     <head>
@@ -16,7 +17,7 @@
                     </div>
                     <div class="detail flex">
                         <p class="name title">{{comic.title}}</p>
-                        <p class="description">{{comic.description}}</p>
+                        <p class="description">{{ comic.description|striptags|filter_description }}</p>
                         <div class="line"></div>
                         <div class="comment-section">
                             <div class="comment-title flex">
