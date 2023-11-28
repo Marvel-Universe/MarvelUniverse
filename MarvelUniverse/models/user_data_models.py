@@ -13,7 +13,7 @@ class UserData(models.Model):
     @property
     def get_trophy_img(self):
         return self.medal_img
-    
+
     def save(self, *args, **kwargs):
         self.medal_img = self.ranking_scores() 
         super().save(*args, **kwargs)

@@ -5,8 +5,10 @@ from .views.see_all import AllCharactersView, AllComicsView, AllSeriesView
 from .views.detail import character_detail_view, comic_detail_view, series_detail_view
 from .views.favorites import toggle_favorite
 from .views.favorites import FavoriteView
+from .views.profile import ProfileView, UpdateProfileImageView
 from .views.quiz import SelectQuizView, CharacterInstructionView, ComicInstructionView, SeriesInstructionView, random_quiz, character_quiz_view, comic_quiz_view, series_quiz_view, leaderboard
 from .views.see_all import CharacterSearchView, ComicSearchView, SeriesSearchView
+
 
 app_name = "MarvelUniverse"
 urlpatterns = [
@@ -23,6 +25,10 @@ urlpatterns = [
     path('comics/<int:comic_pk>', comic_detail_view, name="comics-detail"),
     path('series/<int:series_pk>', series_detail_view, name="series-detail"),
     path('about/', AboutUsView.as_view(), name='about'),
+
+    path('profile/', ProfileView.as_view(), name='profile'),
+    path('update_profile_image/', UpdateProfileImageView.as_view(), name='update_profile_image'),
+
     # quiz url
     path('quiz/', SelectQuizView.as_view(), name='select-quiz'),
     # quiz instruction
