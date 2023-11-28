@@ -202,7 +202,7 @@ def series_quiz_view(request, question_pk):
     return render(request, 'MarvelUniverse/quiz/series-quiz.html', context)
 
 
-@login_required
+@login_required(login_url='login')
 def leaderboard(request):
     this_user = request.user
     this_user_data, created = UserData.objects.get_or_create(user=this_user)
