@@ -3,7 +3,7 @@ from django.db import models
 
 class CharacterQuestion(models.Model):
 
-    description = models.CharField(max_length=1000)
+    description = models.TextField()
     image = models.URLField(null=True)
 
     def __str__(self) -> str:
@@ -23,7 +23,7 @@ class CharacterChoice(models.Model):
 class ComicQuestion(models.Model):
 
     title = models.CharField(max_length=200, null=True)
-    description = models.CharField(max_length=1000)
+    description = models.TextField()
     image = models.URLField()
 
     def __str__(self) -> str:
@@ -44,7 +44,7 @@ class ComicChoice(models.Model):
 class SeriesQuestion(models.Model):
 
     title = models.CharField(max_length=200, null=True)
-    description = models.CharField(max_length=1000)
+    description = models.TextField()
     image = models.URLField()
 
     def __str__(self) -> str:
