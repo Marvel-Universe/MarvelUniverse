@@ -202,6 +202,7 @@ def series_quiz_view(request, question_pk):
     return render(request, 'MarvelUniverse/quiz/series-quiz.html', context)
 
 
+@login_required
 def leaderboard(request):
     this_user = request.user
     this_user_data, created = UserData.objects.get_or_create(user=this_user)
@@ -214,7 +215,6 @@ def leaderboard(request):
     else:
         scores = 0
     context = {
-        'user_scores': this_user_data.scores,
         'top3_users_data': users_data.order_by('-scores')[0:3],
         'other_users_data': users_data.order_by('-scores')[3:]
     }
