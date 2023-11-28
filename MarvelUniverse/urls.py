@@ -34,6 +34,6 @@ urlpatterns = [
     path('quiz/series-quiz/<int:question_pk>', series_quiz_view, name='series-quiz'),
 
     path('quiz/leaderboard', leaderboard, name='leaderboard'),
-    path('<str:path>', handle_invalid_url, name='invalid-url'),
+    path('<str:path>/', handle_invalid_url, name='invalid-url'),
 
 ]
