@@ -46,9 +46,27 @@ share fascinating insights about these places.
    python manage.py migrate
    ```
 
-7. Download data.
+7. Download data. (Note can't use data/* because some conflict with the contenttypes in oauth)
    ```
-   python manage.py loaddata data/*.json
+   python manage.py loaddata data/character_quiz.json
+   ```
+   ```
+   python manage.py loaddata data/comic_quiz.json
+   ```
+   ```
+   python manage.py loaddata --exclude contenttypes data/google-oauth-data.json
+   ```
+   ```
+   python manage.py loaddata data/marvel_data.json
+   ```
+   ```
+   python manage.py loaddata data/series_quiz.json
+   ```
+   ```
+   python manage.py loaddata data/users.json
+   ```
+   ```
+   python manage.py loaddata data/user_data.json
    ```
 
 8. Run the server.
@@ -56,7 +74,16 @@ share fascinating insights about these places.
    python manage.py runserver
    ```
 
+### Run test
+
+###### Note that if you run the test, and it is fail because it can't find static file please run.
+
+```
+    python manage.py collectstatic
+```
+
 ### Project documents
+
 - [Vision Statement](https://github.com/Marvel-Universe/MarvelUniverse.wiki.git)
 - [Requirements](https://github.com/Marvel-Universe/MarvelUniverse.wiki.git)
 - [Development Plan](https://github.com/Marvel-Universe/MarvelUniverse.wiki.git)
@@ -66,6 +93,7 @@ share fascinating insights about these places.
 - [Project Board](https://github.com/orgs/Marvel-Universe/projects/4)
 
 ### Design Documents
+
 * [Website Mock-up](https://www.figma.com/file/Wvt65InqZ3Gp9CX9xlUDHp/Marvel-Universe?type=design&node-id=0%3A1&mode=design&t=7plgw6rFLkbc505V-1)
 * [Domain model](https://miro.com/app/board/uXjVNdOa0Qo=/?share_link_id=514388665087)
 * [[Class Diagram]]
@@ -73,12 +101,22 @@ share fascinating insights about these places.
 * [Project Proposal Slide](https://www.canva.com/design/DAFwCO9Yhec/qyE5YoVGWvG7u55OwDyo7w/edit)
 
 ### Iteration Plan
-- [Iteration 1 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-1) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/2)
-- [Iteration 2 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-2) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/3)
-- [Iteration 3 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-3) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/4)
-- [Iteration 4 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-4) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/5)
-- [Iteration 5 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-5) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/6)
-- [Iteration 6 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-6) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/7)
-- [Iteration 7 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-7) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/8)
-- [Iteration 8 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-8) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/9)
-- [Iteration 9 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-9) and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/10)
+
+- [Iteration 1 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-1)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/2)
+- [Iteration 2 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-2)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/3)
+- [Iteration 3 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-3)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/4)
+- [Iteration 4 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-4)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/5)
+- [Iteration 5 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-5)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/6)
+- [Iteration 6 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-6)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/7)
+- [Iteration 7 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-7)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/8)
+- [Iteration 8 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-8)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/9)
+- [Iteration 9 Plan](https://github.com/Marvel-Universe/MarvelUniverse/wiki/Iteration-9)
+  and [Task Board](https://github.com/orgs/Marvel-Universe/projects/4/views/10)
