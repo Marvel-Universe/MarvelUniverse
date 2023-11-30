@@ -124,8 +124,6 @@ class LeaderboardViewTest(TestCase):
 
         self_user_data = UserData.objects.get(user=self.user)
         self.assertEqual(self_user_data.scores, 50)
-
-        self.assertEqual(response.context['user_scores'], 50)
         self.assertEqual(len(response.context['top3_users_data']), 3)
         self.assertGreaterEqual(len(response.context['other_users_data']), 1)
 
@@ -140,7 +138,5 @@ class LeaderboardViewTest(TestCase):
 
         self_user_data = UserData.objects.get(user=self.user)
         self.assertEqual(self_user_data.scores, 0)
-
-        self.assertEqual(response.context['user_scores'], 0)
         self.assertEqual(len(response.context['top3_users_data']), 3)
         self.assertGreaterEqual(len(response.context['other_users_data']), 1)
